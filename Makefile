@@ -1,0 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sleung <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/01 13:06:09 by sleung            #+#    #+#              #
+#    Updated: 2017/02/21 15:41:24 by sleung           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libftprintf.a
+
+CC = gcc
+CFLAGS = -c -Wall -Werror -Wextra
+
+INCDIR = -I ft_printf.h
+
+RM = rm -f
+
+SRC = ft_printf.c ft_printf_cs.c ft_printf_id.c ft_printf_xo.c \
+	  check_conv.c check_flags.c read_data.c count_spaces.c \
+	  handle_sign.c handle_flags.c handle_sharp.c \
+	  ft_atoi.c ft_itoa_base.c ft_memset.c ft_strjoin.c \
+	  ft_strlen.c ft_strnew.c ft_strdel.c ft_intlen.c \
+	  ft_putstr.c ft_putstrdel.c \
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME):
+	$(CC) $(CFLAGS) $(INCDIR) $(SRC)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+clean:
+	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: clean fclean
