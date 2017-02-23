@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/21 15:48:08 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/23 13:19:13 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				ft_printf_x(int n, t_struct *d);
 int				ft_printf_cx(int n, t_struct *d);
 int				ft_printf_o(int n, t_struct *d);
 int				ft_printf_co(long n, t_struct *d);
-int				ft_printf_pcnt(t_struct *d);
+int				ft_printf_pt(t_struct *d);
 int				ft_printf_u(unsigned int n, t_struct *d);
 int				ft_printf_cu(unsigned long n, t_struct *d);
 int				ft_printf_p(void *ptr, t_struct *d);
@@ -55,13 +55,14 @@ int				check_conv(t_struct *d);
 int				read_data(va_list ap, t_struct *d);
 void			handle_sign(t_struct *d, char **tmp, char **str, int *ti);
 void			handle_flags(t_struct *d, int *space, int *zero, int n);
-void			handle_sharp(t_struct *d, char **tmp, int *ti);
+void			handle_sharp(t_struct *d, char **tmp, int *ti, int n);
 int				count_spaces(t_struct *d, int len);
 int				count_zeros(t_struct *d, int len, int n);
 int				count_spaces_int(t_struct *d, int len, int n);
 int				write_spaces(int spaces, char *tmp, int ti);
 int				write_zeros(int zeros, char *tmp, int ti);
 char			*ft_itoa_base(unsigned int value, int base);
+char			*ft_itoa_unsigned(unsigned int value);
 int				ft_atoi(const char *str);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_strdel(char **as);

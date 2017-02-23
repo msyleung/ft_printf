@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:15 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/21 15:49:10 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/23 13:24:01 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-static int ft_printf_xoxo(int n, char *str, t_struct *d)
+static int	ft_printf_xoxo(int n, char *str, t_struct *d)
 {
 	char	*tmp;
 	int		zero;
@@ -27,14 +27,15 @@ static int ft_printf_xoxo(int n, char *str, t_struct *d)
 	tmp = ft_strnew((len > d->p) ? len + d->mw : d->p);
 	space = count_spaces_int(d, len, n);
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
+//printf("\nspace: %i\nzero: %i\n", space, zero);
 	handle_flags(d, &space, &zero, n);
 	if (space && !d->minus && !d->zero && d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);
 	else if (space && !d->minus && d->zero && d->mw >= d->p && d->p > len)
 		ti = write_spaces(space, tmp, 0);
-	if (d->p == -1 && n == 0)
+	if (d->p == -1 && n == 0 && (d->conv == 'x' || d->conv == 'X' || !d->sharp))
 		return (ft_putstrdel(&tmp, ti));
-	handle_sharp(d, &tmp, &ti);
+	handle_sharp(d, &tmp, &ti, n);
 	ti = ((zero && len < d->p) || d->zero) ? write_zeros(zero, tmp, ti) : ti;
 	while (*str != '\0')
 		tmp[ti++] = *str++;
@@ -69,6 +70,6 @@ int			ft_printf_x(int n, t_struct *d)
 		}
 	}
 	len = ft_printf_xoxo(n, str, d);
-	ft_strdel(&str);
+//	ft_strdel(&str);
 	return (len);
 }

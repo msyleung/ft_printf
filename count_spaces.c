@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 15:51:55 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/21 15:41:48 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/23 13:57:14 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	count_spaces_int(t_struct *d, int len, int n)
 		return ((d->mw - 1) - d->p);
 	else if (d->mw > d->p && d->p > len)
 		return (d->mw - d->p);
+	else if (d->mw < d->p)
+		return (0);
 	return (d->mw - len);
 }
 
