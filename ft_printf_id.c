@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:52 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:18:41 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 15:29:02 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ static int	ft_printf_id(int n, char *str, t_struct *d)
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
 //printf("spaces: %i\nzero: %i\n", space, zero);
 	handle_flags(d, &space, &zero, n);
-	ti = write_spaces(space, tmp, d, len);
 //printf("spaces: %i\nzero: %i\n", space, zero);
-//	if (space && !d->minus && !d->zero && d->mw >= d->p)
-//		ti = write_spaces(space, tmp, 0);
-//	else if (space && !d->minus && d->zero && d->mw >= d->p && d->p > len)
-//		ti = write_spaces(space, tmp, 0);
+	if (space && !d->minus && !d->zero && d->mw >= d->p)
+		ti = write_spaces(space, tmp, 0);
+	else if (space && !d->minus && d->zero && d->mw >= d->p && d->p > len)
+		ti = write_spaces(space, tmp, 0);
 	if (d->p == -1 && n == 0)
 		return (ft_putstrdel(&tmp, ti));
 	handle_sign(d, &tmp, &str, &ti);
