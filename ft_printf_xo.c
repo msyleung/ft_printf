@@ -6,8 +6,8 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:15 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/23 13:24:01 by sleung           ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2017/02/26 14:39:25 by sleung           ###   ########.fr       */
+/*                                      le                                      */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
@@ -54,6 +54,17 @@ int			ft_printf_o(int n, t_struct *d)
 	return (len);
 }
 
+int			ft_printf_co(long n, t_struct *d)
+{
+	char	*str;
+	int		len;
+
+	str = ft_itoa_base_uns_long(n, 8);
+	len = ft_printf_xoxo(n, str, d);
+	ft_strdel(&str);
+	return (len);
+}
+
 int			ft_printf_x(int n, t_struct *d)
 {
 	char	*str;
@@ -70,6 +81,6 @@ int			ft_printf_x(int n, t_struct *d)
 		}
 	}
 	len = ft_printf_xoxo(n, str, d);
-//	ft_strdel(&str);
+	ft_strdel(&str);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 15:51:55 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/23 13:57:14 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 15:23:59 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,20 @@ int	write_zeros(int zeros, char *tmp, int ti)
 	return (ti);
 }
 
-int	write_spaces(int spaces, char *tmp, int ti)
+int	write_spaces(int spaces, char *tmp, t_struct *d, int len)
 {
-	while (spaces > 0)
+	int ti;
+
+	ti = 0;
+	if ((spaces && !d->minus && d->mw >= d->p && (!d->zero ||
+			(d->zero && d->p > len))) || (spaces && d->minus))
 	{
-		tmp[ti] = ' ';
-		ti++;
-		spaces--;
+		while (spaces > 0)
+		{
+			tmp[ti] = ' ';
+			ti++;
+			spaces--;
+		}
 	}
 	return (ti);
 }

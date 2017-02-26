@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/23 13:19:13 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 14:57:23 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int				write_spaces(int spaces, char *tmp, int ti);
 int				write_zeros(int zeros, char *tmp, int ti);
 char			*ft_itoa_base(unsigned int value, int base);
 char			*ft_itoa_unsigned(unsigned int value);
+char			*ft_itoa_base_uns_long(unsigned long value, int base);
 int				ft_atoi(const char *str);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_strdel(char **as);

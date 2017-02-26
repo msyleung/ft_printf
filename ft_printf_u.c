@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:48 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/23 13:59:50 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 14:47:08 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	ft_printf_uu(unsigned int n, char *str, t_struct *d)
 	space = count_spaces_int(d, len, n);
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
 	handle_flags(d, &space, &zero, n);
+	space -= (d->space) ? 1 : 0;
 	if (space && !d->minus && !d->zero && d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);
 	if (d->p == -1 && n == 0)
@@ -42,9 +43,18 @@ int			ft_printf_u(unsigned int n, t_struct *d)
 	char	*str;
 	int		len;
 
-	if (n <= INT_MAX)
-		return (ft_printf_i(n, d));
 	str = ft_itoa_unsigned(n);
+	len = ft_printf_uu(n, str, d);
+	ft_strdel(&str);
+	return (len);
+}
+
+int			ft_printf_cu(unsigned long n, t_struct *d)
+{
+	char	*str;
+	int		len;
+
+	str = ft_itoa_base_uns_long(n, 10);
 	len = ft_printf_uu(n, str, d);
 	ft_strdel(&str);
 	return (len);

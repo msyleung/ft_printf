@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:18:44 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/24 17:00:31 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,133 +18,121 @@ int	main(void)
 	int	ret;
 	int tru;
 
-	if ((ret = ft_printf("%d\n", 21474836)) == (tru = printf("%d\n", 21474836)))
-		write(1, "***OK***\n", 9);
-	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //t
-	if ((ret = ft_printf("%-5d\n", 42)) == (tru = printf("%-5d\n", 42)))
+	if ((ret = ft_printf("%u\n", 42)) == (tru = printf("%u\n", 42)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //y
-	if ((ret = ft_printf("%05d\n", -42)) == (tru = printf("%05d\n", -42)))
+	if ((ret = ft_printf("%u\n", 0)) == (tru = printf("%u\n", 0)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~\n", ret, tru);
 //first
-	if ((ret = ft_printf("%.10d\n", 4242)) == (tru = printf("%.10d\n", 4242)))
+	if ((ret = ft_printf("%u\n", 1)) == (tru = printf("%u\n", 1)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~\n", ret, tru);
 //secomd
-	if ((ret = ft_printf("%.2d\n", 4242)) == (tru = printf("%.2d\n", 4242)))
+	if ((ret = ft_printf("%u\n", 9999)) == (tru = printf("%u\n", 9999)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
+	/*
 //third
-	if ((ret = ft_printf("%4.15d\n", 42)) == (tru = printf("%4.15d\n", 42)))
+	if ((ret = ft_printf("%x\n", -42)) == (tru = printf("%x\n", -42)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //fourth
-	if ((ret = ft_printf("%10.5d\n", 4242)) == (tru = printf("%10.5d\n", 4242)))
-		write(1, "***ok***\n", 9);
-	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//fifth??
-	if ((ret = ft_printf("testomg %.10d\n", -4242)) == (tru = printf("testomg %.10d\n", -4242)))
+
+	if ((ret = ft_printf("%#x\n", 42)) == (tru = printf("%#x\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //ther
-	if ((ret = ft_printf("%15.4d\n", 424242)) == (tru = printf("%15.4d\n", 424242)))
+	if ((ret = ft_printf("%#-.15x\n", 42)) == (tru = printf("%#-.15x\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //ther
-	if ((ret = ft_printf("%15.4d\n", -42)) == (tru = printf("%15.4d\n", -42)))
+	if ((ret = ft_printf("ther : %.x\n", 0)) == (tru = printf("ther : %.x\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//fucking zero
-	if ((ret = ft_printf("%.d, %.0d\n", 0, 0)) == (tru = printf("%.d, %.0d\n", 0, 0)))
+//#0
+	if ((ret = ft_printf("%#x\n", 0)) == (tru = printf("%#x\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//AGAIN
-	if ((ret = ft_printf("%05.2d\n", 0)) == (tru = printf("%05.2d\n", 0)))
+//#8x, 0
+	if ((ret = ft_printf("|%#08x|\n", 0)) == (tru = printf("|%#08x|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//AGAIN
-	if ((ret = ft_printf("%05.2d\n", 1)) == (tru = printf("%05.2d\n", 1)))
+//for two
+	if ((ret = ft_printf("|%#08x|\n", 42)) == (tru = printf("|%#08x|\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//fucking zero
-	if ((ret = ft_printf("%.d, %.0d\n", 42, 43)) == (tru = printf("%.d, %.0d\n", 42, 43)))
+	//#8x, 42
+	if ((ret = ft_printf("|%#8x|\n", 42)) == (tru = printf("|%#8x|\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//fucking zero
-	if ((ret = ft_printf("test |%5.d| |%5.0d|\n", 0, 0)) == (tru = printf("test |%5.d| |%5.0d|\n", 0, 0)))
+	//#-8x
+	if ((ret = ft_printf("|%#-8x|\n", 42)) == (tru = printf("|%#-8x|\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//d->space
-	if ((ret = ft_printf("num: |% d|\n", 42)) == (tru = printf("num: |% d|\n", 42)))
+/////////////// o!!
+	if ((ret = ft_printf("1. |%#6o|\n", 2500)) == (tru = printf("1. |%#6o|\n", 2500)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//d->space && neg
-	if ((ret = ft_printf("num: |% d|\n", -42)) == (tru = printf("num: |% d|\n", -42)))
+	/////////////// o!!
+	if ((ret = ft_printf("2. |%-#6o|\n", 2500)) == (tru = printf("2. |%-#6o|\n", 2500)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//d->space w/ mw & p
-	if ((ret = ft_printf("num: |% 10.5d|\n", 42)) == (tru = printf("num: |% 10.5d|\n", 42)))
+	/////////////// o!!
+	if ((ret = ft_printf("3. |%-5.1o|\n", 2500)) == (tru = printf("3. |%-5.1o|\n", 2500)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//d->zero && plus
-	if ((ret = ft_printf("num: %+05d\n", 88)) == (tru = printf("num: %+05d\n", 88)))
+	//mouli
+	if ((ret = ft_printf("4. test |%#.o|\n", 0)) == (tru = printf("4. test |%#.o|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//d->plus
-	if ((ret = ft_printf("num: %+5d\n", 42)) == (tru = printf("num: %+5d\n", 42)))
+	//mouli
+	if ((ret = ft_printf("5. mouli |%#.0o|\n", 0)) == (tru = printf("5. mouli |%#.0o|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//zero && bigger pres than mw
-	if ((ret = ft_printf("num: %01.5d\n", 42)) == (tru = printf("num: %01.5d\n", 42)))
+	//6
+	if ((ret = ft_printf("6. mouli |%-6.10o|\n", 2500)) == (tru = printf("6. mouli |%-6.10o|\n", 2500)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//space & bigger pres than mw
-	if ((ret = ft_printf("num: %01.5d\n", 42)) == (tru = printf("num: %01.5d\n", 42)))
+	//7.
+	if ((ret = ft_printf("7. mouli |%-10.5o|\n", 2500)) == (tru = printf("7. mouli |%-10.5o|\n", 2500)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//+ & bigger pres than mw
-	if ((ret = ft_printf("num: %+01.6d\n", 1111)) == (tru = printf("num: %+01.6d\n", 1111)))
+	//8
+	if ((ret = ft_printf("8. mouli |%.o|\n", 0)) == (tru = printf("8. mouli |%.o|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//
-	if ((ret = ft_printf("num: |%-10.5d|\n", 9090)) == (tru = printf("num: |%-10.5d|\n", 9090)))
+	//9
+	if ((ret = ft_printf("9. mouli |%5.o|\n", 0)) == (tru = printf("9. mouli |%5.o|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-	//test
-	if ((ret = ft_printf("num: |% 03d|\n", 0)) == (tru = printf("num: |% 03d|\n", 0)))
+	if ((ret = ft_printf("10. mouli |%#.x|\n", 0)) == (tru = printf("10. mouli |%#.x|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-	//test
-	if ((ret = ft_printf("num: |%010d|\n", 42)) == (tru = printf("num: |%010d|\n", 42)))
-		write(1, "***ok***\n", 9);
-	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+*/
 }
