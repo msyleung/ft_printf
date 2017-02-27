@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 13:34:07 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 16:28:42 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 17:24:44 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ static void	get_minwidth(t_struct *d)
 	ft_strdel(&mwstr);
 }
 
+static void get_length_modifier(t_struct *d)
+{
+	d->lm = d->fo[d->i++];
+	if (d->lm == 'h' && d->fo[d->i] == 'h')
+	{
+		d->lm = 'H';
+		d->i++;
+	}
+	else if (d->lm == 'l' && d->fo[d->i] == 'l')
+	{
+		d->lm = 'L';
+		d->i++;
+	}
+}
+
 void		check_flags(t_struct *d)
 {
 	d->flag = (d->fo[d->i] == '#' || d->fo[d->i] == '0' || d->fo[d->i] == '-'
@@ -73,17 +88,5 @@ void		check_flags(t_struct *d)
 		get_precision(d);
 	if (d->fo[d->i] == 'h' || d->fo[d->i] == 'l' || d->fo[d->i] == 'j'
 			|| d->fo[d->i] == 'z')
-	{
-		d->lm = d->fo[d->i++];
-		if (d->fo[d->i] == 'h' && d->fo[d->i + 1] == 'h')
-		{
-			d->lm = 'H';
-			d->i++;
-		}
-		else if (d->fo[d->i] == 'l' && d->fo[d->i + 1] == 'l')
-		{
-			d->lm = 'L';
-			d->i++;
-		}
-	}
+		get_length_modifier(d);
 }

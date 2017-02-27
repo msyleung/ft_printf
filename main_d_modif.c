@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 17:11:23 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 17:24:47 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ int	main(void)
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
 	//min
-	if ((ret = ft_printf("%jd\n", LONG_MIN)) == (tru = printf("%jd\n", LONG_MIN)))
+/*	if ((ret = ft_printf("%hhd\n", -129)) == (tru = printf("%hhd\n", -129)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
-	/*
 //third
 	if ((ret = ft_printf("%x\n", -42)) == (tru = printf("%x\n", -42)))
 		write(1, "***OK***\n", 9);
