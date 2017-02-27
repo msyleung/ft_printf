@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/24 16:36:00 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 16:53:15 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			ft_printf_p(void *ptr, t_struct *d)
 	}
 	if (d->p)
 		return (ft_printf_ptr(d, tmp, n));
-	str = ft_strjoin("0x7fff", tmp);
+	str = ft_strjoin("0x", tmp);
 	ti = ft_printf_s(str, d);
 	ft_strdel(&str);
 	ft_strdel(&tmp);

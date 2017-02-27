@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:26:56 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 16:32:38 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,28 @@ static int read_data2(va_list ap, t_struct *d)
 	return (len);
 }
 
+static int	extract_id(va_list ap, t_struct *d)
+{
+	int len;
+
+	len = 0;
+	if (d->lm == 0)
+		len += ft_printf_i(va_arg(ap, int), d);
+	else if (d->lm == 'H')
+		len += ft_printf_i((signed char)va_arg(ap, int), d);
+	else if (d->lm == 'h')
+		len += ft_printf_i((short)va_arg(ap, int), d);
+	else if (d->lm == 'l')
+		len += ft_printf_i(va_arg(ap, long), d);
+	else if (d->lm == 'L')
+		len += ft_printf_i(va_arg(ap, long long), d);
+	else if (d->lm == 'j')
+		len += ft_printf_i(va_arg(ap, intmax_t), d);
+	else if (d->lm == 'z')
+		len += ft_printf_i(va_arg(ap, size_t), d);
+	return (len);
+}
+
 int			read_data(va_list ap, t_struct *d)
 {
 	int len;
@@ -44,7 +66,8 @@ int			read_data(va_list ap, t_struct *d)
 	else if (d->conv == 'p')
 		len += ft_printf_p(va_arg(ap, void *), d);
 	else if (d->conv == 'i' || d->conv == 'd')
-		len += ft_printf_i(va_arg(ap, int), d);
+		len += extract_id(ap, d);
+//		len += ft_printf_i(va_arg(ap, int), d);
 //	else if (d->conv == 'D')
 //		len += ft_printf_cd(va_arg(ap, void *), d);
 	else if (d->conv == 'o')

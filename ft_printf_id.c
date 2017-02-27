@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:52 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:29:02 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 17:16:03 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-static int	ft_printf_id(int n, char *str, t_struct *d)
+static int	ft_printf_id(intmax_t n, char *str, t_struct *d)
 {
 	char	*tmp;
 	int		zero;
@@ -44,12 +44,15 @@ static int	ft_printf_id(int n, char *str, t_struct *d)
 	return (ft_putstrdel(&tmp, ti));
 }
 
-int			ft_printf_i(int n, t_struct *d)
+int			ft_printf_i(intmax_t n, t_struct *d)
 {
 	char	*str;
 	int		len;
 
-	str = ft_itoa_base(n, 10);
+	if (n >= LONG_MIN)
+		str = ft_itoa_base(n, 10);
+	else
+		str = ft_strjoin("-9223372036854775808", "");
 	len = ft_printf_id(n, str, d);
 	ft_strdel(&str);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 17:07:27 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 17:11:23 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,31 @@ int	main(void)
 	int tru;
 
 //t
-	if ((ret = ft_printf("%x\n", 42)) == (tru = printf("%x\n", 42)))
+	if ((ret = ft_printf("%zd\n", 42)) == (tru = printf("%zd\n", 42)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //y
-	if ((ret = ft_printf("%X\n", 42)) == (tru = printf("%X\n", 42)))
+	if ((ret = ft_printf("%zd\n", 0)) == (tru = printf("%zd\n", 0)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~\n", ret, tru);
 //first
-	if ((ret = ft_printf("%x\n", 0)) == (tru = printf("%x\n", 0)))
-		write(1, "***OK***\n", 9);
-	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~\n", ret, tru);
+//	if ((ret = ft_printf("%jd\n", 0)) == (tru = printf("%jd\n", 0)))
+//		write(1, "***OK***\n", 9);
+//	else
+//		printf("yours: %i, true: %i\n~~~~~~~~~~~~~\n", ret, tru);
 //secomd
-	if ((ret = ft_printf("%X\n", 0)) == (tru = printf("%X\n", 0)))
+	if ((ret = ft_printf("%jd\n", LONG_MAX)) == (tru = printf("%jd\n", LONG_MAX)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
+	//min
+	if ((ret = ft_printf("%jd\n", LONG_MIN)) == (tru = printf("%jd\n", LONG_MIN)))
+		write(1, "***OK***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
+	/*
 //third
 	if ((ret = ft_printf("%x\n", -42)) == (tru = printf("%x\n", -42)))
 		write(1, "***OK***\n", 9);
@@ -133,9 +139,5 @@ int	main(void)
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-//UINTMAX
-	if ((ret = ft_printf("11. mouli |%x|\n", UINT_MAX)) == (tru = printf("11. mouli |%lx|\n", UINT_MAX)))
-		write(1, "***ok***\n", 9);
-	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+*/
 }

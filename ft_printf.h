@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:28:51 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 17:15:20 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define INT_MAX 2147483647
 # define UINT_MAX 4294967295
+# define LONG_MAX 9223372036854775807
+# define LONG_MIN -9223372036854775807
 
 typedef struct	s_struct
 {
@@ -40,7 +42,7 @@ typedef struct	s_struct
 int				ft_printf(const char *format, ...);
 int				ft_printf_c(int c, t_struct *d);
 int				ft_printf_s(char *str, t_struct *d);
-int				ft_printf_i(int n, t_struct *d);
+int				ft_printf_i(intmax_t n, t_struct *d);
 int				ft_printf_x(int n, t_struct *d);
 int				ft_printf_cx(int n, t_struct *d);
 int				ft_printf_o(int n, t_struct *d);
@@ -61,7 +63,7 @@ int				count_zeros(t_struct *d, int len, int n);
 int				count_spaces_int(t_struct *d, int len, int n);
 int				write_spaces(int spaces, char *tmp, int ti);
 int				write_zeros(int zeros, char *tmp, int ti);
-char			*ft_itoa_base(unsigned int value, int base);
+char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_itoa_unsigned(unsigned int value);
 char			*ft_itoa_base_uns_long(unsigned long value, int base);
 int				ft_atoi(const char *str);

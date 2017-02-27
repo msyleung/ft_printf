@@ -6,19 +6,19 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:22:31 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 14:30:57 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 16:56:46 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_itoa_base_length(unsigned int value, int base)
+static int	ft_itoa_base_length(intmax_t value, int base)
 {
 	int	len;
 
-	len = ((int)value < 0 && base == 10) ? 1 : 0;
-	value = ((int)value < 0 && base == 10) ? -value : value;
-	while (value >= (unsigned int)base)
+	len = (value < 0 && base == 10) ? 1 : 0;
+	value = (value < 0 && base == 10) ? -value : value;
+	while (value >= (intmax_t)base)
 	{
 		value /= base;
 		len++;
@@ -26,7 +26,7 @@ static int	ft_itoa_base_length(unsigned int value, int base)
 	return (len);
 }
 
-char		*ft_itoa_base(unsigned int value, int base)
+char		*ft_itoa_base(intmax_t value, int base)
 {
 	int		neg;
 	int		len;
@@ -37,8 +37,8 @@ char		*ft_itoa_base(unsigned int value, int base)
 	if (base < 2 || base > 16)
 		return (NULL);
 	len = ft_itoa_base_length(value, base);
-	neg = ((int)value < 0 && base == 10) ? 1 : 0;
-	value = ((int)value < 0 && base == 10) ? -value : value;
+	neg = (value < 0 && base == 10) ? 1 : 0;
+	value = (value < 0 && base == 10) ? -value : value;
 	if (!(str = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
 	while (count <= len)

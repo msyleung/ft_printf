@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:15 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 14:39:25 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/26 17:11:48 by sleung           ###   ########.fr       */
 /*                                      le                                      */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int			ft_printf_x(int n, t_struct *d)
 	int		len;
 
 	len = -1;
-	str = ft_itoa_base(n, 16);
+	str = ft_itoa_base_uns_long(n, 16);
 	if (d->conv == 'x')
 	{
 		while (str[++len] != '\0')
