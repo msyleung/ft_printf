@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:17:00 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:56:07 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 15:47:52 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ static int	char_out(t_struct *d)
 	return (1);
 }
 
-/*static void	erase_data(t_struct *d)
+/*static void	erase_data(t_struct **tmp)
 {
-	ft_strdel(&d->fo);
+	t_struct *d;
+
+	d = *tmp;
 	d->i = 0;
 	d->conv = 0;
 	d->flag = 0;
@@ -86,6 +88,8 @@ int			ft_printf(const char *format, ...)
 			len += char_out(d);
 	}
 	va_end(ap);
-//	erase_data(d);
+//	if (d)
+//		free(d);
+//	erase_data(&d);
 	return (len);
 }

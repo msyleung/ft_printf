@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 11:05:39 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/23 12:46:53 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 15:12:53 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int	ft_putstrdel(char **as, int ti)
 {
-	int	n;
+	char	*tmp;
+	int		n;
 
-	n = 0;
+	n = -1;
 	if (!as)
 		return (0);
 	if (*as != NULL)
 	{
-		as[0][ti] = '\0';
-		while (n < ti)
-			write(1, &(as[0][n++]), 1);
+		tmp = *as;
+		while (++n < ti)
+			write(1, tmp++, 1);
 		free(*as);
 		*as = NULL;
 	}
