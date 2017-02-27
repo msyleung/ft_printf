@@ -6,13 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:48 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 14:47:08 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 13:12:10 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_printf_uu(unsigned int n, char *str, t_struct *d)
+static int	ft_printf_uu(uintmax_t n, char *str, t_struct *d)
 {
 	char	*tmp;
 	int		ti;
@@ -38,18 +38,18 @@ static int	ft_printf_uu(unsigned int n, char *str, t_struct *d)
 	return (ft_putstrdel(&tmp, ti));
 }
 
-int			ft_printf_u(unsigned int n, t_struct *d)
+int			ft_printf_u(uintmax_t n, t_struct *d)
 {
 	char	*str;
 	int		len;
 
-	str = ft_itoa_unsigned(n);
+	str = ft_itoa_base_uns_long(n, 10);
 	len = ft_printf_uu(n, str, d);
 	ft_strdel(&str);
 	return (len);
 }
 
-int			ft_printf_cu(unsigned long n, t_struct *d)
+int			ft_printf_cu(uintmax_t n, t_struct *d)
 {
 	char	*str;
 	int		len;

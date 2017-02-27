@@ -6,7 +6,7 @@
 #    By: sleung <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 13:06:09 by sleung            #+#    #+#              #
-#    Updated: 2017/02/26 15:29:06 by sleung           ###   ########.fr        #
+#    Updated: 2017/02/27 12:51:44 by sleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RM = rm -f
 SRC = ft_printf.c ft_printf_cs.c ft_printf_id.c ft_printf_xo.c \
 	  ft_printf_pp.c ft_printf_u.c \
 	  check_conv.c check_flags.c read_data.c count_spaces.c \
-	  handle_sign.c handle_flags.c handle_sharp.c \
+	  handle_sign.c handle_flags.c handle_sharp.c handle_modifiers.c \
 	  ft_atoi.c ft_itoa_base.c ft_itoa_unsigned.c ft_memset.c ft_strjoin.c \
 	  ft_strlen.c ft_strnew.c ft_strdel.c ft_intlen.c \
 	  ft_putstr.c ft_putstrdel.c \

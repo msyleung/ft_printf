@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 15:56:15 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 17:11:48 by sleung           ###   ########.fr       */
-/*                                      le                                      */
+/*   Created: 2017/02/27 13:35:12 by sleung            #+#    #+#             */
+/*   Updated: 2017/02/27 13:44:17 by sleung           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-#include <stdio.h>
 
 static int	ft_printf_xoxo(int n, char *str, t_struct *d)
 {
@@ -27,8 +25,8 @@ static int	ft_printf_xoxo(int n, char *str, t_struct *d)
 	tmp = ft_strnew((len > d->p) ? len + d->mw : d->p);
 	space = count_spaces_int(d, len, n);
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
-//printf("\nspace: %i\nzero: %i\n", space, zero);
 	handle_flags(d, &space, &zero, n);
+	space -= (d->space) ? 1 : 0;
 	if (space && !d->minus && !d->zero && d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);
 	else if (space && !d->minus && d->zero && d->mw >= d->p && d->p > len)
@@ -43,18 +41,7 @@ static int	ft_printf_xoxo(int n, char *str, t_struct *d)
 	return (ft_putstrdel(&tmp, ti));
 }
 
-int			ft_printf_o(int n, t_struct *d)
-{
-	char	*str;
-	int		len;
-
-	str = ft_itoa_base(n, 8);
-	len = ft_printf_xoxo(n, str, d);
-	ft_strdel(&str);
-	return (len);
-}
-
-int			ft_printf_co(long n, t_struct *d)
+int			ft_printf_o(uintmax_t n, t_struct *d)
 {
 	char	*str;
 	int		len;
@@ -65,7 +52,18 @@ int			ft_printf_co(long n, t_struct *d)
 	return (len);
 }
 
-int			ft_printf_x(int n, t_struct *d)
+int			ft_printf_co(uintmax_t n, t_struct *d)
+{
+	char	*str;
+	int		len;
+
+	str = ft_itoa_base_uns_long(n, 8);
+	len = ft_printf_xoxo(n, str, d);
+	ft_strdel(&str);
+	return (len);
+}
+
+int			ft_printf_x(uintmax_t n, t_struct *d)
 {
 	char	*str;
 	int		len;

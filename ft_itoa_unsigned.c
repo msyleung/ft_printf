@@ -6,44 +6,20 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:18:36 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 17:25:07 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 13:28:14 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#include <stdio.h>
-
-char		*ft_itoa_unsigned(unsigned int value)
-{
-	char	*str;
-	int		count;
-	int		mod;
-
-	count = 0;
-	if (value < INT_MAX)
-		return (str = ft_itoa_base(value, 10));
-	if (!(str = (char *)malloc(sizeof(char) * 9 + 1)))
-		return (NULL);
-	while (count < 10)
-	{
-		mod = value % 10;
-		str[9 - count] = mod + '0';
-		value /= 10;
-		count++;
-	}
-	str[10] = '\0';
-	return (str);
-}
-
-static int	ft_itoa_base_uns_long_length(unsigned long value, int base)
+static int	ft_itoa_base_uns_long_length(uintmax_t value, int base)
 {
 	int	len;
 
 	len = 0;
 	if (base == 16)
-		value = (unsigned int)value;
-	while (value >= (unsigned long)base)
+		value = (uintmax_t)value;
+	while (value >= (uintmax_t)base)
 	{
 		value /= base;
 		len++;
@@ -51,7 +27,7 @@ static int	ft_itoa_base_uns_long_length(unsigned long value, int base)
 	return (len);
 }
 
-char		*ft_itoa_base_uns_long(unsigned long value, int base)
+char		*ft_itoa_base_uns_long(uintmax_t value, int base)
 {
 	int len;
 	int count;
