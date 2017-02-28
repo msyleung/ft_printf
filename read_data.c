@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 13:52:04 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 16:28:52 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			read_data(va_list ap, t_struct *d)
 	if (d->conv == 's')
 		len += ft_printf_s(va_arg(ap, char *), d);
 //	else if (d->conv == 'S')
-//		len += ft_printf_cs(va_arg(ap, char *), d);
+//		len += ft_printf_s(va_arg(ap, wchar_t *), d);
 	else if (d->conv == 'p')
 		len += ft_printf_p(va_arg(ap, void *), d);
 	else if (d->conv == 'i' || d->conv == 'd')

@@ -6,11 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:17:00 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 15:47:52 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 17:47:01 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+#include <stdio.h>
 
 static void	init_data(t_struct *d)
 {
@@ -34,6 +36,8 @@ static int	fill_data(va_list ap, t_struct *d)
 	check_flags(d);
 	if (check_conv(d) == 1)
 		len = read_data(ap, d);
+	else if (d->mw)
+		len = ft_printf_c(d->fo[d->i++], d);
 	return (len);
 }
 
