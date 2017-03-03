@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:17:00 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 17:47:01 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 15:55:39 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static void	init_data(t_struct *d)
 {
+	d->null = 0;
 	d->conv = 0;
 	d->flag = 0;
 	d->sharp = 0;
@@ -28,32 +29,31 @@ static void	init_data(t_struct *d)
 	d->lm = 0;
 }
 
-static int	fill_data(va_list ap, t_struct *d)
+static int	fill_data(va_list ap, t_struct *d, t_format *f)
 {
 	int	len;
 
 	len = 0;
-	check_flags(d);
-	if (check_conv(d) == 1)
-		len = read_data(ap, d);
+	check_flags(d, f);
+	if (check_conv(d, f) == 1)
+		len = read_data(ap, d, f);
 	else if (d->mw)
-		len = ft_printf_c(d->fo[d->i++], d);
+		len = ft_printf_c(f->fo[f->i++], d);
 	return (len);
 }
 
-static int	char_out(t_struct *d)
+static int	char_out(t_format *f)
 {
-	write(1, &(d->fo[d->i]), 1);
-	d->i++;
+	write(1, &(f->fo[f->i]), 1);
+	f->i++;
 	return (1);
 }
 
-/*static void	erase_data(t_struct **tmp)
+static void	erase_data(t_struct **tmp)
 {
 	t_struct *d;
 
 	d = *tmp;
-	d->i = 0;
 	d->conv = 0;
 	d->flag = 0;
 	d->zero = 0;
@@ -65,35 +65,38 @@ static int	char_out(t_struct *d)
 	d->lm = 0;
 	free(d);
 	d = NULL;
-}*/
+}
 
 int			ft_printf(const char *format, ...)
 {
 	int				len;
+	t_format		*f;
 	t_struct		*d;
 	va_list			ap;
 
 	len = 0;
-	if (!(d = (t_struct *)malloc(sizeof(t_struct))))
+	if (!(f = (t_format *)malloc(sizeof(t_format))))
 		return (-1);
-	d->i = 0;
-	d->fo = (char *)format;
+	f->i = 0;
+	f->fo = (char *)format;
 	va_start(ap, format);
-	while (d->fo[d->i] != '\0')
+	while (f->fo[f->i] != '\0')
 	{
-		if (d->fo[d->i] == '%')
+		if (f->fo[f->i] == '%')
 		{
-			init_data(d);
-			if (!d->fo[++d->i])
+			if (!f->fo[++f->i])
 				break ;
-			len += fill_data(ap, d);
+			if (!(d = (t_struct *)malloc(sizeof(t_struct))))
+				return (-1);
+			init_data(d);
+			len += fill_data(ap, d, f);
+			erase_data(&d);
 		}
 		else
-			len += char_out(d);
+			len += char_out(f);
 	}
 	va_end(ap);
-//	if (d)
-//		free(d);
-//	erase_data(&d);
+	if (f)
+		free(f);
 	return (len);
 }

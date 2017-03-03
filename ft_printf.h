@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 15:47:47 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 14:52:08 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@
 # define LONG_MIN -9223372036854775807
 # define ULONG_MAX 18446744073709551615
 
-typedef struct	s_struct
+typedef struct	s_format
 {
 	char	*fo;
-	char	*st;
 	int		i;
+}				t_format;
+
+typedef struct	s_struct
+{
+	int		null;
 	int		flag;
 	int		sharp;
 	char	conv;
@@ -55,14 +59,14 @@ int				ft_printf_u(uintmax_t n, t_struct *d);
 int				ft_printf_cu(unsigned long n, t_struct *d);
 int				ft_printf_p(void *ptr, t_struct *d);
 int				get_size(t_struct *d);
-void			check_flags(t_struct *d);
-int				check_conv(t_struct *d);
-int				read_data(va_list ap, t_struct *d);
+void			check_flags(t_struct *d, t_format *f);
+int				check_conv(t_struct *d, t_format *f);
+int				read_data(va_list ap, t_struct *d, t_format *f);
 intmax_t		extract_id(va_list ap, t_struct *d);
 uintmax_t		extract_oxu(va_list ap, t_struct *d);
 void			handle_sign(t_struct *d, char **tmp, char **str, int *ti);
 void			handle_flags(t_struct *d, int *space, int *zero, int n);
-void			handle_sharp(t_struct *d, char **tmp, int *ti, int n);
+char			*handle_sharp(t_struct *d, char **tmp, int *ti, int n);
 int				count_spaces(t_struct *d, int len);
 int				count_zeros(t_struct *d, int len, int n);
 int				count_spaces_int(t_struct *d, int len, int n);
@@ -75,6 +79,7 @@ void			*ft_memset(void *b, int c, size_t len);
 void			ft_strdel(char **as);
 char			*ft_strnew(size_t size);
 size_t			ft_strlen(const char *s);
+char			*ft_stricpy(char *dst, int *i, const char *src);
 int				ft_intlen(int nb);
 char			*ft_strjoin(char const *s1, char const *s2);
 int				ft_putstr(char *tmp);

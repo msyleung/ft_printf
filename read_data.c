@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 16:28:52 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/01 13:55:37 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int read_data2(va_list ap, t_struct *d)
 	return (len);
 }
 
-int			read_data(va_list ap, t_struct *d)
+int			read_data(va_list ap, t_struct *d, t_format *f)
 {
 	int len;
 
@@ -53,6 +53,6 @@ int			read_data(va_list ap, t_struct *d)
 		len += ft_printf_co(va_arg(ap, long), d);
 	else
 		len += read_data2(ap, d);
-	d->i++;
+	f->i++;
 	return (len);
 }

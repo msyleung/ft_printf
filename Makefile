@@ -6,14 +6,14 @@
 #    By: sleung <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 13:06:09 by sleung            #+#    #+#              #
-#    Updated: 2017/02/27 15:14:48 by sleung           ###   ########.fr        #
+#    Updated: 2017/03/01 16:29:35 by sleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 CC = gcc
-CFLAGS = -c -Wall -Werror -Wextra
+CFLAGS = -c -Wall -Werror -Wextra -g
 
 INCDIR = -I ft_printf.h
 
@@ -24,7 +24,7 @@ SRC = ft_printf.c ft_printf_cs.c ft_printf_id.c ft_printf_xo.c \
 	  check_conv.c check_flags.c read_data.c count_spaces.c \
 	  handle_sign.c handle_flags.c handle_sharp.c handle_modifiers.c \
 	  ft_atoi.c ft_itoa_base.c ft_itoa_unsigned.c ft_memset.c ft_strjoin.c \
-	  ft_strlen.c ft_strnew.c ft_strdel.c ft_intlen.c \
+	  ft_strlen.c ft_strnew.c ft_strdel.c ft_intlen.c ft_stricpy.c \
 	  ft_putstr.c ft_putstrdel.c \
 
 OBJ = $(SRC:.c=.o)

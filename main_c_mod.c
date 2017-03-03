@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/01 16:20:53 by sleung           ###   ########.fr       */
+/*   Updated: 2017/02/27 14:39:02 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,34 @@ int	main(void)
 {
 	int	ret;
 	int tru;
-	int	i = 42;
-	char *str = "hello, it's me";
+
 //t
-	if ((ret = ft_printf("%p\n", &i)) == (tru = printf("%p\n", &i)))
+	if ((ret = ft_printf("{%03c}\n", 0)) == (tru = printf("{%03c}\n", 0)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //y
-	if ((ret = ft_printf("%p\n", &str)) == (tru = printf("%p\n", &str)))
+/*	if ((ret = ft_printf("%zd\n", 0)) == (tru = printf("%zd\n", 0)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~\n", ret, tru);
 //first
-//	if ((ret = ft_printf("%p\n", 0)) == (tru = printf("%p\n", 0)))
+//	if ((ret = ft_printf("%jd\n", 0)) == (tru = printf("%jd\n", 0)))
 //		write(1, "***OK***\n", 9);
 //	else
 //		printf("yours: %i, true: %i\n~~~~~~~~~~~~~\n", ret, tru);
 //secomd
-//	if ((ret = ft_printf("%9.2p\n", (void *)1234)) == (tru = printf("%9.2p\n", (void *)1234)))
-//		write(1, "***OK***\n", 9);
-//	else
-//		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
+	if ((ret = ft_printf("%jd\n", LONG_MAX)) == (tru = printf("%jd\n", LONG_MAX)))
+		write(1, "***OK***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
+	//min
+	if ((ret = ft_printf("%hhd\n", -129)) == (tru = printf("%hhd\n", -129)))
+		write(1, "***OK***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~\n", ret, tru);
 //third
-	if ((ret = ft_printf("%O\n", 9223372036854775807)) == (tru = printf("%lO\n", 9223372036854775807)))
+	if ((ret = ft_printf("%x\n", -42)) == (tru = printf("%x\n", -42)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
@@ -50,7 +54,6 @@ int	main(void)
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
-/*
 //ther
 	if ((ret = ft_printf("%#-.15x\n", 42)) == (tru = printf("%#-.15x\n", 42)))
 		write(1, "***ok***\n", 9);

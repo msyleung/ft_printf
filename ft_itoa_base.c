@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:22:31 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 16:56:46 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 15:09:04 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ char		*ft_itoa_base(intmax_t value, int base)
 	len = ft_itoa_base_length(value, base);
 	neg = (value < 0 && base == 10) ? 1 : 0;
 	value = (value < 0 && base == 10) ? -value : value;
-	if (!(str = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
+	str = ft_strnew(len + 1);
 	while (count <= len)
 	{
 		str[len - count] = "0123456789ABCDEF"[value % base];

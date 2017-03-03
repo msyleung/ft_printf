@@ -6,13 +6,15 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 13:35:12 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 15:58:16 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 16:29:07 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_printf_xoxo(int n, char *str, t_struct *d)
+#include <stdio.h>
+
+static int	ft_printf_xoxo(uintmax_t n, char *str, t_struct *d)
 {
 	char	*tmp;
 	int		zero;
@@ -22,7 +24,7 @@ static int	ft_printf_xoxo(int n, char *str, t_struct *d)
 
 	ti = 0;
 	len = (str[0] == 0) ? 0 : ft_strlen(str);
-	tmp = ft_strnew((len > d->p) ? len + d->mw : d->p);
+	tmp = ft_strnew((len > d->p) ? len + d->mw + d->sharp: d->p + d->sharp);
 	space = count_spaces_int(d, len, n);
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
 	handle_flags(d, &space, &zero, n);
@@ -33,10 +35,9 @@ static int	ft_printf_xoxo(int n, char *str, t_struct *d)
 		ti = write_spaces(space, tmp, 0);
 	if (d->p == -1 && n == 0 && (d->conv == 'x' || d->conv == 'X' || !d->sharp))
 		return (ft_putstrdel(&tmp, ti));
-	handle_sharp(d, &tmp, &ti, n);
+	tmp = handle_sharp(d, &tmp, &ti, n);
 	ti = ((zero && len < d->p) || d->zero) ? write_zeros(zero, tmp, ti) : ti;
-	while (*str != '\0')
-		tmp[ti++] = *str++;
+	tmp = ft_stricpy(tmp, &ti, str);
 	ti = (space && d->minus) ? write_spaces(space, tmp, ti) : ti;
 	return (ft_putstrdel(&tmp, ti));
 }
@@ -69,7 +70,10 @@ int			ft_printf_x(uintmax_t n, t_struct *d)
 	int		len;
 
 	len = -1;
-	str = ft_itoa_base_uns_long(n, 16);
+	if (n < INT_MAX)
+		str = ft_itoa_base(n, 16);
+	else
+		str = ft_itoa_base_uns_long(n, 16);
 	if (d->conv == 'x')
 	{
 		while (str[++len] != '\0')

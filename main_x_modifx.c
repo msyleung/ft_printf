@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 13:29:11 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 15:54:56 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ int	main(void)
 	int	ret;
 	int tru;
 
+/*	if ((ret = ft_printf("%x\n", 42)) == (tru = printf("%x\n", 42)))
+		write(1, "***OK***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //t
 	if ((ret = ft_printf("%llx\n", LONG_MAX)) == (tru = printf("%lx\n", LONG_MAX)))
 		write(1, "***OK***\n", 9);
 	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~\n", ret, tru);*/
 //y
-/*	if ((ret = ft_printf("%zd\n", 0)) == (tru = printf("%zd\n", 0)))
+	if ((ret = ft_printf("%#llx\n", LONG_MAX)) == (tru = printf("%#lx\n", LONG_MAX)))
 		write(1, "***OK***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~\n", ret, tru);
@@ -34,6 +38,8 @@ int	main(void)
 //	else
 //		printf("yours: %i, true: %i\n~~~~~~~~~~~~~\n", ret, tru);
 //secomd
+///
+/*
 	if ((ret = ft_printf("%jd\n", LONG_MAX)) == (tru = printf("%jd\n", LONG_MAX)))
 		write(1, "***OK***\n", 9);
 	else

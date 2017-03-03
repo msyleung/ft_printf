@@ -6,21 +6,21 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:26:03 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 14:59:50 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/01 13:53:03 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check_conv(t_struct *d)
+int	check_conv(t_struct *d, t_format *f)
 {
-	if (d->fo[d->i] == 's' || d->fo[d->i] == 'S' || d->fo[d->i] == 'p' ||
-			d->fo[d->i] == 'i' || d->fo[d->i] == 'd' || d->fo[d->i] == 'D' ||
-			d->fo[d->i] == 'o' || d->fo[d->i] == 'O' || d->fo[d->i] == 'u' ||
-			d->fo[d->i] == 'U' || d->fo[d->i] == 'x' || d->fo[d->i] == 'X' ||
-			d->fo[d->i] == 'c' || d->fo[d->i] == 'C' || d->fo[d->i] == '%')
+	if (f->fo[f->i] == 's' || f->fo[f->i] == 'S' || f->fo[f->i] == 'p' ||
+			f->fo[f->i] == 'i' || f->fo[f->i] == 'd' || f->fo[f->i] == 'D' ||
+			f->fo[f->i] == 'o' || f->fo[f->i] == 'O' || f->fo[f->i] == 'u' ||
+			f->fo[f->i] == 'U' || f->fo[f->i] == 'x' || f->fo[f->i] == 'X' ||
+			f->fo[f->i] == 'c' || f->fo[f->i] == 'C' || f->fo[f->i] == '%')
 	{
-		d->conv = d->fo[d->i];
+		d->conv = f->fo[f->i];
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 17:07:27 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/01 13:31:42 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(void)
 {
 	int	ret;
 	int tru;
-
+/*
 //t
 	if ((ret = ft_printf("%x\n", 42)) == (tru = printf("%x\n", 42)))
 		write(1, "***OK***\n", 9);
@@ -50,7 +50,12 @@ int	main(void)
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //ther
-	if ((ret = ft_printf("%#-.15x\n", 42)) == (tru = printf("%#-.15x\n", 42)))
+//if ((ret = ft_printf("%#-.15x\n", 42)) == (tru = printf("%#-.15x\n", 42)))
+//		write(1, "***ok***\n", 9);
+//	else
+//		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+//ther
+	if ((ret = ft_printf("peanut: %-#.15x\n", 42)) == (tru = printf("peanut: %-#.15x\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
@@ -58,14 +63,14 @@ int	main(void)
 	if ((ret = ft_printf("ther : %.x\n", 0)) == (tru = printf("ther : %.x\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
-		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);*/
 //#0
 	if ((ret = ft_printf("%#x\n", 0)) == (tru = printf("%#x\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //#8x, 0
-	if ((ret = ft_printf("|%#08x|\n", 0)) == (tru = printf("|%#08x|\n", 0)))
+	if ((ret = ft_printf("test: |%#08x|\n", 0)) == (tru = printf("test: |%#08x|\n", 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);

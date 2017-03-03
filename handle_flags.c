@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 11:11:25 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 15:57:56 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/01 17:24:32 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	handle_flags(t_struct *d, int *space, int *zero, int n)
 		s -= 1;
 	if ((d->plus || d->space) && d->zero && d->p < len && n > -1)
 		z -= 1;
-	else if (d->zero && d->sharp && n > -1)
+	else if (d->zero && d->sharp && n > 0)
 		z -= 2;
 	if (*zero && d->minus && d->p < len)
 		z = 0;

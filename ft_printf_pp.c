@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 16:53:15 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/01 15:44:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static int	ft_printf_ptr(t_struct *d, char *str, int n)
 	zero = (d->p > len) ? count_zeros(d, len, n) : space;
 	if (space && d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);
-	handle_sharp(d, &tmp, &ti, n);
+	tmp[ti++] = '0';
+	tmp[ti++] = 'x';
 	ti = ((zero && len < d->p) || d->zero) ? write_zeros(zero, tmp, ti) : ti;
 	while (*str != '\0')
 		tmp[ti++] = *str++;

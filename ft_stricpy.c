@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_flags.c                                     :+:      :+:    :+:   */
+/*   ft_stricpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 11:11:25 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 16:14:01 by sleung           ###   ########.fr       */
+/*   Created: 2017/03/01 15:51:18 by sleung            #+#    #+#             */
+/*   Updated: 2017/03/01 15:56:32 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*handle_sharp(t_struct *d, char **tmp, int *ti, int n)
+char	*ft_stricpy(char *dst, int *i, const char *src)
 {
-	char	*ctmp;
-	int		j;
+	int	j;
+	int n;
 
-	if (d->sharp && n != 0)
-	{
-		ctmp = *tmp;
-		j = *ti;
-		ctmp[j++] = '0';
-		if (d->conv == 'x' || d->conv == 'X')
-			ctmp[j++] = d->conv;
-		*ti = j;
-		*tmp = ctmp;
-	}
-	return (*tmp);
+	n = 0;
+	j = *i;
+	while (src[n] != '\0')
+		dst[j++] = src[n++];
+	dst[j] = '\0';
+	*i = j;
+	return (dst);
 }
