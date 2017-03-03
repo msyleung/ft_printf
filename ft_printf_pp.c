@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/01 15:44:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 16:40:07 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	ft_printf_ptr(t_struct *d, char *str, int n)
 
 	ti = 0;
 	len = ft_strlen(str);
-	tmp = ft_strnew((len > d->p) ? len + d->mw : d->p);
+	tmp = ft_strnew((len + d->mw > d->p) ? len + d->mw : d->p);
 	space = count_spaces_int(d, len, n) - 2;
 	zero = (d->p > len) ? count_zeros(d, len, n) : space;
 	if (space && d->mw >= d->p)

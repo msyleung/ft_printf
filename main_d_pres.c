@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/27 15:57:54 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 19:07:59 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ int	main(void)
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //fucking zero
-	if ((ret = ft_printf("%.d, %.0d\n", 42, 43)) == (tru = printf("%.d, %.0d\n", 42, 43)))
+	if ((ret = ft_printf("//%.d, %.0d\n", 42, 43)) == (tru = printf("//%.d, %.0d\n", 42, 43)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 //fucking zero
-	if ((ret = ft_printf("test |%5.d| |%5.0d|\n", 0, 0)) == (tru = printf("test |%5.d| |%5.0d|\n", 0, 0)))
+	if ((ret = ft_printf("test |%5.d| |%5.0d|\n", 500, 0)) == (tru = printf("test |%5.d| |%5.0d|\n", 500, 0)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
@@ -144,6 +144,15 @@ int	main(void)
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 	//test
 	if ((ret = ft_printf("num: |%010d|\n", 42)) == (tru = printf("num: |%010d|\n", 42)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	if ((ret = ft_printf("num: |%20.15d|\n", 54321)) == (tru = printf("num: |%20.15d|\n", 54321)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	//blank
+	if ((ret = ft_printf("num: |%5.d|\n", 42)) == (tru = printf("num: |%5.d|\n", 42)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);

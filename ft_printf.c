@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:17:00 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 15:55:39 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 18:24:52 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	fill_data(va_list ap, t_struct *d, t_format *f)
 	int	len;
 
 	len = 0;
-	check_flags(d, f);
+	check_flags(d, f, ap);
 	if (check_conv(d, f) == 1)
 		len = read_data(ap, d, f);
 	else if (d->mw)

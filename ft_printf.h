@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 14:52:08 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/03 13:07:56 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <wchar.h>
 
 # define SHRT_MAX +32767
 # define INT_MAX 2147483647
@@ -46,7 +47,8 @@ typedef struct	s_struct
 }				t_struct;
 
 int				ft_printf(const char *format, ...);
-int				ft_printf_c(int c, t_struct *d);
+int				ft_printf_c(unsigned char c, t_struct *d);
+int				ft_printf_cc(wint_t c, t_struct *d);
 int				ft_printf_s(char *str, t_struct *d);
 int				ft_printf_i(intmax_t n, t_struct *d);
 int				ft_printf_cd(intmax_t n, t_struct *d);
@@ -59,13 +61,14 @@ int				ft_printf_u(uintmax_t n, t_struct *d);
 int				ft_printf_cu(unsigned long n, t_struct *d);
 int				ft_printf_p(void *ptr, t_struct *d);
 int				get_size(t_struct *d);
-void			check_flags(t_struct *d, t_format *f);
+void			check_flags(t_struct *d, t_format *f, va_list ap);
 int				check_conv(t_struct *d, t_format *f);
 int				read_data(va_list ap, t_struct *d, t_format *f);
 intmax_t		extract_id(va_list ap, t_struct *d);
 uintmax_t		extract_oxu(va_list ap, t_struct *d);
 void			handle_sign(t_struct *d, char **tmp, char **str, int *ti);
 void			handle_flags(t_struct *d, int *space, int *zero, int n);
+int				handle_wildcard(t_struct *d, t_format *f, va_list ap, int precision);
 char			*handle_sharp(t_struct *d, char **tmp, int *ti, int n);
 int				count_spaces(t_struct *d, int len);
 int				count_zeros(t_struct *d, int len, int n);

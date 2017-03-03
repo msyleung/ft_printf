@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 15:51:55 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/26 15:28:44 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 19:39:10 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	count_zeros(t_struct *d, int len, int n)
 
 int	count_spaces_int(t_struct *d, int len, int n)
 {
-	if (d->p == -1)
+	if (d->p == -1 && n == 0)
 		return (d->mw);
 	else if (d->mw > d->p && d->p > len && n < 0)
 		return ((d->mw - 1) - d->p);

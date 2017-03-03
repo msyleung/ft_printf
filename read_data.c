@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/01 13:55:37 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/02 18:40:51 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int read_data2(va_list ap, t_struct *d)
 		len += ft_printf_cu(va_arg(ap, unsigned long), d);	
 	else if (d->conv == 'X' || d->conv == 'x')
 		len += ft_printf_x(extract_oxu(ap, d), d);
-	else if (d->conv == 'c')
+	else if (d->conv == 'c' && d->lm != 'l')
 		len += ft_printf_c(va_arg(ap, int), d);
-//	else if (d->conv == 'C')
-//		len += ft_printf_cc(va_arg(ap, int), d);
+	else if (d->conv == 'C' || (d->conv == 'c' && d->lm == 'l'))
+		len += ft_printf_cc(va_arg(ap, wint_t), d);
 	else if (d->conv == '%')
 		len += ft_printf_pt(d);
 	return (len);
