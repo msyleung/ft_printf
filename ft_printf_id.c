@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:52 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 19:41:05 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/03 15:20:02 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ static int	ft_printf_id(intmax_t n, char *str, t_struct *d)
 	len = (str[0] == 0) ? 0 : ft_strlen(str);
 	tmp = ft_strnew(((len + d->mw) > d->p) ? len + d->mw : d->p);
 	space = count_spaces_int(d, len, n);
-	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
+	zero = (!d->zero || (d->p >= len)) ? count_zeros(d, len, n) : space;
+//	printf("\nspace: %i\nzero: %i\n", space, zero);
 	handle_flags(d, &space, &zero, n);
-	if (space && !d->minus && !d->zero && d->mw >= d->p)
+//	printf("\nspace: %i\nzero: %i\n", space, zero);
+	if (space && !d->minus && !d->zero && len + d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);
-	else if (space && !d->minus && d->zero && d->mw >= d->p &&
-			(d->p > len || d->space))
+	else if (space && !d->minus && d->zero && len + d->mw >= d->p &&
+			(d->p >= len || d->space))
 		ti = write_spaces(space, tmp, 0);
 	if (d->p == -1 && n == 0)
 		return (ft_putstrdel(&tmp, ti));

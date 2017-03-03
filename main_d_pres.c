@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 16:12:47 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 19:07:59 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/03 15:20:14 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,29 @@ int	main(void)
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
 	//blank
 	if ((ret = ft_printf("num: |%5.d|\n", 42)) == (tru = printf("num: |%5.d|\n", 42)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	//mew
+	if ((ret = ft_printf("num: |% 4.5i|\n", 42)) == (tru = printf("num: |% 4.5i|\n", 42)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	//zero
+	if ((ret = ft_printf("num: |%04.2i|\n", 42)) == (tru = printf("num: |%04.2i|\n", 42)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	//space
+	if ((ret = ft_printf("num: |%4i|\n", 42)) == (tru = printf("num: |%4i|\n", 42)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	if ((ret = ft_printf("num: |%03.2i|\n", -1)) == (tru = printf("num: |%03.2i|\n", -1)))
+		write(1, "***ok***\n", 9);
+	else
+		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);
+	if ((ret = ft_printf("num: |%05.9i|\n", -420)) == (tru = printf("num: |%05.9i|\n", -420)))
 		write(1, "***ok***\n", 9);
 	else
 		printf("yours: %i, true: %i\n~~~~~~~~~~~~~~~~~~~~\n", ret, tru);

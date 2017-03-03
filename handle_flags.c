@@ -6,11 +6,22 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 11:11:25 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/01 17:24:32 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/03 15:19:54 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	handle_zeros(t_struct *d, int len, int z, int n)
+{
+	if ((d->plus || d->space) && d->zero && d->p < len && n > -1)
+		z -= 1;
+	else if (d->zero && d->sharp && n > 0)
+		z -= 2;
+	if (z && d->minus && d->p < len)
+		z = 0;
+	return (z);
+}
 
 void	handle_flags(t_struct *d, int *space, int *zero, int n)
 {
@@ -30,12 +41,12 @@ void	handle_flags(t_struct *d, int *space, int *zero, int n)
 		s -= 2;
 	else if (d->sharp && n > 0 && (d->conv == 'o' || d->conv == 'O'))
 		s -= 1;
-	if ((d->plus || d->space) && d->zero && d->p < len && n > -1)
-		z -= 1;
-	else if (d->zero && d->sharp && n > 0)
-		z -= 2;
-	if (*zero && d->minus && d->p < len)
-		z = 0;
+	z = handle_zeros(d, len, z, n);
+	if (d->zero && d->p >= len && n < 0)
+	{
+		z = (s > 0) ? s : d->p - (len - 1);
+		s = 0;
+	}
 	*space = s;
 	*zero = z;
 }
