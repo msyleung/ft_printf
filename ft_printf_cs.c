@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:33 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/03 14:36:40 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/03 16:19:22 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ int			ft_printf_c(unsigned char c, t_struct *d)
 {
 	char	*tmp;
 	int		spaces;
+	int		zero;
 	int		len;
 	int		ti;
 
 	ti = 0;
 	len = (d->mw > 0) ? d->mw : 1;
 	tmp = ft_strnew(len);
-	spaces = d->mw - 1;
+	spaces = (!d->zero) ? d->mw - 1 : 0;
+	zero = (!d->zero) ? 0 : d->mw - 1;
 	if (d->minus == 0 && spaces > 0)
 		ti = write_spaces(spaces, tmp, ti);
+	else if (d->zero)
+		ti = write_zeros(zero, tmp, ti);
 	tmp[ti++] = c;
 	if (d->minus == 1 && spaces > 0)
 		ti = write_spaces(spaces, tmp, ti);
