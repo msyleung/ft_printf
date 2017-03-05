@@ -6,13 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 13:03:08 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:07:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int read_data2(va_list ap, t_struct *d)
+static int	read_data2(va_list ap, t_struct *d)
 {
 	int len;
 
@@ -20,7 +20,7 @@ static int read_data2(va_list ap, t_struct *d)
 	if (d->conv == 'u')
 		len += ft_printf_u(extract_oxu(ap, d), d);
 	else if (d->conv == 'U')
-		len += ft_printf_cu(va_arg(ap, unsigned long), d);	
+		len += ft_printf_cu(va_arg(ap, unsigned long), d);
 	else if (d->conv == 'X' || d->conv == 'x')
 		len += ft_printf_x(extract_oxu(ap, d), d);
 	else if (d->conv == 'c' && d->lm != 'l')

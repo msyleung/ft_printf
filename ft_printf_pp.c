@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/03 16:55:43 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:16:53 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,21 @@ int			ft_printf_pt(t_struct *d)
 
 static int	ft_printf_nullptr(t_struct *d, int ti)
 {
-	char *tmp; 
+	char	*tmp;
+	int		zero;
 
 	if (d->p == -1)
 	{
 		tmp = ft_strjoin("0x", "");
 		return (ft_putstrdel(&tmp, 2));
 	}
-	else if (d->p > 0)
+	else if ((d->p || (d->mw && d->zero)) > 0)
 	{
-		tmp = ft_strnew(d->p + 2);
+		zero = (d->mw - 2 > d->p + 2) ? d->mw - 2: d->p;
+		tmp = ft_strnew(zero);
 		tmp = ft_strjoin("0x", "");
 		ti = 2;
-		while (d->p-- > 0)
+		while (zero-- > 0)
 			tmp[ti++] = '0';
 		return (ft_putstrdel(&tmp, ti));
 	}

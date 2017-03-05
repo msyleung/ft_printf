@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:59:16 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 13:03:05 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:05:35 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int			ft_printf_cc(wchar_t c, t_struct *d)
 	int		ti;
 
 	ti = 0;
+	if (!c)
+		write_null(d);
 	len = (d->mw > 0) ? d->mw : ft_widelen(c);
 	tmp = ft_strnew(len);
 	spaces = d->mw - 1;
@@ -62,15 +64,16 @@ int			ft_printf_cs(wchar_t *str, t_struct *d)
 	ti = 0;
 	si = -1;
 	len = 0;
-	zero = (!d->zero) ? 0 : d->mw;
-	if (!str)
+	if (!str || d->p == -1)
 		return (write_null(d));
 	while (str[++si] != '\0')
 		len += ft_widelen(str[si]);
 	tmp = ft_strnew(len);
 	si = d->mw - 1;
-	if (d->minus == 0 && si > 0)
+	if (d->minus == 0 && si > 0 && !d->zero)
 		ti = write_spaces(si, tmp, ti);
+	else if ((zero = d->mw - len) > 0 && d->zero)
+		ti = write_zeros(zero, tmp, ti);
 	ti += ft_tonarrow(str, tmp, len, ti);
 	if (d->minus == 1 && si > 0)
 		ti = write_spaces(si, tmp, ti);

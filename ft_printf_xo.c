@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 13:35:12 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/03 16:53:59 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:07:55 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_printf_xoxo(uintmax_t n, char *str, t_struct *d)
 
 	ti = 0;
 	len = (str[0] == 0) ? 0 : ft_strlen(str);
-	tmp = ft_strnew((len > d->p) ? len + d->mw + d->sharp: d->p + d->sharp);
+	tmp = ft_strnew((len > d->p) ? len + d->mw + d->sharp : d->p + d->sharp);
 	space = count_spaces_int(d, len, n);
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
 	handle_flags(d, &space, &zero, n);

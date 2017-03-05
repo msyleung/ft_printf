@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:18:36 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 14:54:35 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:06:57 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	ft_itoa_base_uns_long_length(uintmax_t value, int base)
 
 char		*ft_itoa_base_uns_long(uintmax_t value, int base)
 {
-	int len;
-	int count;
-	char *str;
+	int		len;
+	int		count;
+	char	*str;
 
 	count = 0;
 	len = ft_itoa_base_uns_long_length(value, base);
