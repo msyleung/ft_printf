@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 12:39:45 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 13:13:46 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_struct
 
 int				ft_printf(const char *format, ...);
 int				ft_printf_c(unsigned char c, t_struct *d);
-int				ft_printf_cc(wint_t c, t_struct *d);
+int				ft_printf_cc(wchar_t c, t_struct *d);
 int				ft_printf_s(char *str, t_struct *d);
 int				ft_printf_cs(wchar_t *c, t_struct *d);
 int				ft_printf_i(intmax_t n, t_struct *d);
