@@ -6,19 +6,33 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:33 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/03 16:19:22 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 12:41:10 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	write_null(void)
+#include <stdio.h>
+
+int	write_null(t_struct *d)
 {
-	write(1, "(null)", 6);
-	return (6);
+	char	*tmp;
+	int		ti;
+
+	if (!d->zero)
+	{
+		tmp = ft_strjoin("(null)", "");
+		ti = 6;
+	}
+	else
+	{
+		tmp = ft_strnew(d->mw);
+		ti = write_zeros(d->mw, tmp, 0);
+	}
+	return (ft_putstrdel(&tmp, ti));
 }
 
-int			ft_printf_c(unsigned char c, t_struct *d)
+int	ft_printf_c(unsigned char c, t_struct *d)
 {
 	char	*tmp;
 	int		spaces;
@@ -46,16 +60,18 @@ int			ft_printf_c(unsigned char c, t_struct *d)
 	return (len);
 }
 
-int			ft_printf_s(char *str, t_struct *d)
+int	ft_printf_s(char *str, t_struct *d)
 {
 	char	*tmp;
 	int		spaces;
+	int		zero;
 	int		len;
 	int		ti;
 
 	ti = 0;
+	zero = (!d->zero) ? 0 : d->mw;
 	if (!str)
-		return (write_null());
+		return (write_null(d));
 	len = ft_strlen(str);
 	tmp = ft_strnew((len > 0) ? len : d->mw);
 	spaces = count_spaces(d, len);

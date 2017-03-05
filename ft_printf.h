@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/03 16:00:50 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 12:39:45 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				ft_printf(const char *format, ...);
 int				ft_printf_c(unsigned char c, t_struct *d);
 int				ft_printf_cc(wint_t c, t_struct *d);
 int				ft_printf_s(char *str, t_struct *d);
+int				ft_printf_cs(wchar_t *c, t_struct *d);
 int				ft_printf_i(intmax_t n, t_struct *d);
 int				ft_printf_cd(intmax_t n, t_struct *d);
 int				ft_printf_x(uintmax_t n, t_struct *d);
@@ -75,6 +76,8 @@ int				count_zeros(t_struct *d, int len, int n);
 int				count_spaces_int(t_struct *d, int len, int n);
 int				write_spaces(int spaces, char *tmp, int ti);
 int				write_zeros(int zeros, char *tmp, int ti);
+int				write_null(t_struct *d);
+int				ft_tonarrow(wchar_t *str, char *dst, int dlen, int ti);
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_itoa_base_uns_long(uintmax_t value, int base);
 int				ft_atoi(const char *str);
