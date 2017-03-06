@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 13:13:46 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 18:28:12 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				ft_printf_x(uintmax_t n, t_struct *d);
 int				ft_printf_cx(uintmax_t n, t_struct *d);
 int				ft_printf_o(uintmax_t n, t_struct *d);
 int				ft_printf_co(uintmax_t n, t_struct *d);
-int				ft_printf_pt(t_struct *d);
+int				ft_printf_pcnt(t_struct *d);
 int				ft_printf_u(uintmax_t n, t_struct *d);
 int				ft_printf_cu(unsigned long n, t_struct *d);
 int				ft_printf_p(void *ptr, t_struct *d);

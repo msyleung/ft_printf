@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:59:16 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 14:05:35 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 18:32:23 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_printf_cc(wchar_t c, t_struct *d)
 	ti += ft_tonarrow(&c, tmp, len, ti);
 	if (d->minus == 1 && spaces > 0)
 		ti = write_spaces(spaces, tmp, ti);
-	tmp[ti] = '\0';
+//	tmp[ti] = 0;
 	len = ft_putstr(tmp);
 	if (c == 0)
 		len += 1;
@@ -69,7 +69,7 @@ int			ft_printf_cs(wchar_t *str, t_struct *d)
 	while (str[++si] != '\0')
 		len += ft_widelen(str[si]);
 	tmp = ft_strnew(len);
-	si = d->mw - 1;
+	si = d->mw - len;
 	if (d->minus == 0 && si > 0 && !d->zero)
 		ti = write_spaces(si, tmp, ti);
 	else if ((zero = d->mw - len) > 0 && d->zero)
@@ -77,7 +77,8 @@ int			ft_printf_cs(wchar_t *str, t_struct *d)
 	ti += ft_tonarrow(str, tmp, len, ti);
 	if (d->minus == 1 && si > 0)
 		ti = write_spaces(si, tmp, ti);
-	tmp[ti] = '\0';
+	if (d->minus)
+		tmp[ti] = 0;
 	len = ft_putstr(tmp);
 	ft_strdel(&tmp);
 	return (len);

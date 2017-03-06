@@ -6,13 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 14:16:53 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 18:34:39 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_printf_pt(t_struct *d)
+int			ft_printf_pcnt(t_struct *d)
 {
 	char	*tmp;
 	int		spaces;
@@ -35,26 +35,39 @@ int			ft_printf_pt(t_struct *d)
 	return (ft_putstrdel(&tmp, ti));
 }
 
-static int	ft_printf_nullptr(t_struct *d, int ti)
+static int	ft_printf_nullptr2(t_struct *d, int ti)
 {
 	char	*tmp;
 	int		zero;
+	int		space;
+
+	tmp = ft_strnew((d->mw + 2 > d->p) ? d->mw : d->p + 2);
+	space = (d->mw && !d->p) ? count_spaces_int(d, 2, 0) - 1 :
+		count_spaces_int(d, 2, 0) - 2;
+	zero = (d->zero && d->p > 2) ? count_zeros(d, 2, 0) : space;
+	if (space && d->mw >= d->p && !d->zero && !d->minus)
+		ti = write_spaces(space, tmp, 0);
+	tmp[ti++] = '0';
+	tmp[ti++] = 'x';
+	if (d->mw && !d->p && !d->zero)
+		tmp[ti++] = '0';
+	if ((zero && d->p > 2) || d->zero)
+		ti = write_zeros((d->p) ? d->p : d->mw - 2, tmp, ti);
+	ti = (space && d->minus) ? write_spaces(space, tmp, ti) : ti;
+	return (ft_putstrdel(&tmp, ti));
+}
+
+static int	ft_printf_nullptr(t_struct *d)
+{
+	char	*tmp;
 
 	if (d->p == -1)
 	{
 		tmp = ft_strjoin("0x", "");
 		return (ft_putstrdel(&tmp, 2));
 	}
-	else if ((d->p || (d->mw && d->zero)) > 0)
-	{
-		zero = (d->mw - 2 > d->p + 2) ? d->mw - 2: d->p;
-		tmp = ft_strnew(zero);
-		tmp = ft_strjoin("0x", "");
-		ti = 2;
-		while (zero-- > 0)
-			tmp[ti++] = '0';
-		return (ft_putstrdel(&tmp, ti));
-	}
+	else if (d->p || d->mw)
+		return (ft_printf_nullptr2(d, 0));
 	tmp = ft_strjoin("0x0", "");
 	return (ft_putstrdel(&tmp, 3));
 }
@@ -92,7 +105,7 @@ int			ft_printf_p(void *ptr, t_struct *d)
 	ti = -1;
 	n = (long)ptr;
 	if (n == 0)
-		return (ft_printf_nullptr(d, ti));
+		return (ft_printf_nullptr(d));
 	tmp = ft_itoa_base(n, 16);
 	while (tmp[++ti] != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 14:07:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 18:35:42 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	read_data2(va_list ap, t_struct *d)
 	else if (d->conv == 'C' || (d->conv == 'c' && d->lm == 'l'))
 		len += ft_printf_cc(va_arg(ap, wint_t), d);
 	else if (d->conv == '%')
-		len += ft_printf_pt(d);
+		len += ft_printf_pcnt(d);
 	return (len);
 }
 

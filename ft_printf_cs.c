@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:33 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 14:05:37 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/05 18:38:10 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_printf_c(unsigned char c, t_struct *d)
 	int		ti;
 
 	ti = 0;
-	if (!c && !d->flag)
-		write_null(d);
+	if (!c && !d->zero)
+		return (write_null(d));
 	len = (d->mw > 0) ? d->mw : 1;
 	tmp = ft_strnew(len);
 	spaces = (!d->zero) ? d->mw - 1 : 0;
