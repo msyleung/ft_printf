@@ -6,11 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 17:58:25 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 12:58:08 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 15:58:52 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
+
+#include <stdio.h>
 
 static int	convert_unicode(wchar_t c, char *dst, int j)
 {
@@ -37,7 +39,7 @@ static int	convert_unicode(wchar_t c, char *dst, int j)
 	return (j);
 }
 
-int			ft_tonarrow(wchar_t *str, char *dst, int dlen, int ti)
+/*int			ft_tonarrow_minwdpres(wchar_t *str, char *dst, t_struct *d, int ti)
 {
 	int		i;
 	int		j;
@@ -45,7 +47,29 @@ int			ft_tonarrow(wchar_t *str, char *dst, int dlen, int ti)
 
 	j = ti;
 	i = 0;
-	while (str[i] != '\0' && (i < dlen - 1))
+	while (str[i] != '\0' && (j < d->p - 1))
+	{
+		c = str[i];
+		j = convert_unicode(c, dst, j);
+		i++;
+	}
+	dst[j] = '\0';
+	return (j);
+}*/
+
+int			ft_tonarrow(wchar_t *str, char *dst, int dlen, t_struct *d)
+{
+	int		i;
+	int		j;
+	wchar_t	c;
+
+	j = ft_strlen(dst);
+	i = 0;
+	if (d->p != 0 && d->conv == 'S')
+		dlen = d->p;
+	if (str[i] != '\0' && ((d->p) ? j : i) > dlen - 1)
+		j = convert_unicode(str[i], dst, j);
+	while (str[i] != '\0' && (((d->p) ? j : i) < dlen - 1))
 	{
 		c = str[i];
 		j = convert_unicode(c, dst, j);

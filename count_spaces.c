@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 15:51:55 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 14:51:21 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:40:42 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	count_zeros(t_struct *d, int len, int n)
 {

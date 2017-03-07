@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:40:57 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 19:04:00 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:11 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	handle_wildcard(t_struct *d, t_format *f, va_list ap, int precision)
 {

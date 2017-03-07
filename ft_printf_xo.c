@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 13:35:12 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 14:07:55 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:46:00 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 #include <stdio.h>
 
@@ -70,7 +70,7 @@ int			ft_printf_x(uintmax_t n, t_struct *d)
 	int		len;
 
 	len = -1;
-	if (n < INT_MAX)
+	if (n < 2147483647)
 		str = ft_itoa_base(n, 16);
 	else
 		str = ft_itoa_base_uns_long(n, 16);

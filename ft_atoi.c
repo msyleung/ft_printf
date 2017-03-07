@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:36:32 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/17 15:51:31 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:18 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	ft_atoi(const char *str)
 {

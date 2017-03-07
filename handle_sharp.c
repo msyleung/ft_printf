@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 11:11:25 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/03 16:34:09 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:36 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 char	*handle_sharp(t_struct *d, char **tmp, int *ti, int n)
 {

@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:48 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 16:40:27 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 static int	ft_printf_uu(uintmax_t n, char *str, t_struct *d)
 {

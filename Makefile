@@ -6,7 +6,7 @@
 #    By: sleung <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 13:06:09 by sleung            #+#    #+#              #
-#    Updated: 2017/03/05 14:18:06 by sleung           ###   ########.fr        #
+#    Updated: 2017/03/06 13:39:37 by sleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 CC = gcc
 CFLAGS = -c -Wall -Werror -Wextra -g
 
-INCDIR = -I ft_printf.h
+INCDIR = -I libftprintf.h
 
 RM = rm -f
 

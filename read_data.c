@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 18:35:42 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:57 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 static int	read_data2(va_list ap, t_struct *d)
 {

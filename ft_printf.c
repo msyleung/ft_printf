@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:17:00 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 13:24:22 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:38:41 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 #include <stdio.h>
 

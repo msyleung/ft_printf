@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 11:15:12 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/01 15:26:05 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 14:31:30 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 void	handle_sign(t_struct *d, char **tmp, char **str, int *ti)
 {

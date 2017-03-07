@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 16:02:40 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/17 15:52:40 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:04 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

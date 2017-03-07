@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:26:03 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/01 13:53:03 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:39:46 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	check_conv(t_struct *d, t_format *f)
 {

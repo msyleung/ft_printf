@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 14:32:23 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/20 17:28:05 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:38:15 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	ft_putstr(char *str)
 {

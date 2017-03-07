@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 15:46:04 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 18:28:12 by sleung           ###   ########.fr       */
+/*   Created: 2017/03/06 13:37:58 by sleung            #+#    #+#             */
+/*   Updated: 2017/03/06 13:47:40 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
-
-# define SHRT_MAX +32767
-# define INT_MAX 2147483647
-# define UINT_MAX 4294967295
-# define LONG_MAX 9223372036854775807
-# define LONG_MIN -9223372036854775807
-# define ULONG_MAX 18446744073709551615
 
 typedef struct	s_format
 {
@@ -77,7 +70,7 @@ int				count_spaces_int(t_struct *d, int len, int n);
 int				write_spaces(int spaces, char *tmp, int ti);
 int				write_zeros(int zeros, char *tmp, int ti);
 int				write_null(t_struct *d);
-int				ft_tonarrow(wchar_t *str, char *dst, int dlen, int ti);
+int				ft_tonarrow(wchar_t *str, char *dst, int dlen, t_struct *d);
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_itoa_base_uns_long(uintmax_t value, int base);
 int				ft_atoi(const char *str);

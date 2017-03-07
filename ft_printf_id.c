@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:55:52 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/05 18:32:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 15:07:03 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 static int	ft_printf_id(intmax_t n, char *str, t_struct *d)
 {
@@ -31,9 +31,9 @@ static int	ft_printf_id(intmax_t n, char *str, t_struct *d)
 	else if (space && !d->minus && d->zero && len + d->mw >= d->p &&
 			(d->p >= len || d->space))
 		ti = write_spaces(space, tmp, 0);
+	handle_sign(d, &tmp, &str, &ti);
 	if (d->p == -1 && n == 0)
 		return (ft_putstrdel(&tmp, ti));
-	handle_sign(d, &tmp, &str, &ti);
 	ti = ((zero && len < d->p) || d->zero) ? write_zeros(zero, tmp, ti) : ti;
 	tmp = ft_stricpy(tmp, &ti, str);
 	ti = (space && d->minus) ? write_spaces(space, tmp, ti) : ti;
@@ -45,7 +45,7 @@ int			ft_printf_i(intmax_t n, t_struct *d)
 	char	*str;
 	int		len;
 
-	if (n >= LONG_MIN)
+	if (n >= -9223372036854775807)
 		str = ft_itoa_base(n, 10);
 	else
 		str = ft_strjoin("-9223372036854775808", "");
@@ -59,7 +59,7 @@ int			ft_printf_cd(intmax_t n, t_struct *d)
 	char	*str;
 	int		len;
 
-	if (n >= LONG_MIN)
+	if (n >= -9223372036854775807)
 		str = ft_itoa_base(n, 10);
 	else
 		str = ft_strjoin("-9223372036854775808", "");

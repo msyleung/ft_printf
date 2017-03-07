@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:30:57 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/17 15:52:59 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:40:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 size_t	ft_strlen(const char *s)
 {

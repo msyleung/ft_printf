@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 13:34:07 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/02 19:58:17 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 16:17:46 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 static void	get_flags(t_struct *d, t_format *f)
 {
@@ -66,7 +66,7 @@ static void	get_minwidth(t_struct *d, t_format *f, va_list ap)
 		d->mw = handle_wildcard(d, f, ap, 0);
 }
 
-static void get_length_modifier(t_struct *d, t_format *f)
+static void	get_length_modifier(t_struct *d, t_format *f)
 {
 	d->lm = f->fo[f->i++];
 	if (d->lm == 'h' && f->fo[f->i] == 'h')

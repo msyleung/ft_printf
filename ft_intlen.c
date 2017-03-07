@@ -6,11 +6,11 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 13:35:02 by sleung            #+#    #+#             */
-/*   Updated: 2017/02/21 14:36:58 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:40:20 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	ft_intlen(int nb)
 {
