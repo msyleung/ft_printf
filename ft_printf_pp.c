@@ -6,11 +6,13 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:39:21 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 12:32:54 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+#include <stdio.h>
 
 int			ft_printf_pcnt(t_struct *d)
 {
@@ -72,7 +74,7 @@ static int	ft_printf_nullptr(t_struct *d)
 	return (ft_putstrdel(&tmp, 3));
 }
 
-static int	ft_printf_ptr(t_struct *d, char *str, int n)
+static int	ft_printf_ptr(t_struct *d, char *str, intmax_t n)
 {
 	char	*tmp;
 	int		len;
@@ -82,7 +84,7 @@ static int	ft_printf_ptr(t_struct *d, char *str, int n)
 
 	ti = 0;
 	len = ft_strlen(str);
-	tmp = ft_strnew((len + d->mw > d->p) ? len + d->mw : d->p);
+	tmp = ft_strnew((len + d->mw > d->p) ? len + d->mw : d->p + 2);
 	space = count_spaces_int(d, len, n) - 2;
 	zero = (d->p > len) ? count_zeros(d, len, n) : space;
 	if (space && d->mw >= d->p)
@@ -97,13 +99,13 @@ static int	ft_printf_ptr(t_struct *d, char *str, int n)
 
 int			ft_printf_p(void *ptr, t_struct *d)
 {
-	char	*str;
-	char	*tmp;
-	long	n;
-	int		ti;
+	char		*str;
+	char		*tmp;
+	intmax_t	n;
+	int			ti;
 
 	ti = -1;
-	n = (long)ptr;
+	n = (intmax_t)ptr;
 	if (n == 0)
 		return (ft_printf_nullptr(d));
 	tmp = ft_itoa_base(n, 16);

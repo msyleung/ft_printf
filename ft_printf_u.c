@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:48 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:41:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/07 12:21:45 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	ft_printf_uu(uintmax_t n, char *str, t_struct *d)
 	handle_flags(d, &space, &zero, n);
 	space -= (d->space) ? 1 : 0;
 	if (space && !d->minus && !d->zero && d->mw >= d->p)
+		ti = write_spaces(space, tmp, 0);
+	else if (space && !d->minus && d->zero && d->mw >= d->p &&
+			(d->p > len || d->p == -1))
 		ti = write_spaces(space, tmp, 0);
 	if (d->p == -1 && n == 0)
 		return (ft_putstrdel(&tmp, ti));

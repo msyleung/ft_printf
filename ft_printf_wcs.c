@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:59:16 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 15:57:27 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 13:25:51 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,15 @@ int			ft_printf_cc(wchar_t c, t_struct *d)
 	ti = 0;
 	if (!c)
 		write_null(d);
-	len = (d->mw > 0) ? d->mw : ft_widelen(c);
+	len = (d->mw > 4) ? d->mw : ft_widelen(c);
 	tmp = ft_strnew(len);
-	spaces = d->mw - 1;
+	spaces = d->mw - ft_widelen(c);
 	if (d->minus == 0 && spaces > 0)
 		ti = write_spaces(spaces, tmp, ti);
 	ti += ft_tonarrow(&c, tmp, len, d);
-//	ti += ft_tonarrow(&c, tmp, len, ti);
 	if (d->minus == 1 && spaces > 0)
 		ti = write_spaces(spaces, tmp, ti);
-//	tmp[ti] = 0;
+	tmp[ti] = 0;
 	len = ft_putstr(tmp);
 	if (c == 0)
 		len += 1;
@@ -69,15 +68,13 @@ int			ft_printf_cs(wchar_t *str, t_struct *d)
 		return (write_null(d));
 	while (str[++si] != '\0')
 		len += ft_widelen(str[si]);
-	tmp = ft_strnew(len);
+	tmp = ft_strnew(len + d->mw);
 	si = count_spaces(d, len);
-//printf("spaces: %i len: %i\n", si, len);
-//	si = (d->mw > d->p) ? si + 1 : si;
 	if (d->minus == 0 && si > 0 && !d->zero)
 		ti = write_spaces(si, tmp, ti);
 	else if ((zero = d->mw - len) > 0 && d->zero)
 		ti = write_zeros(zero, tmp, ti);
-	ti += ft_tonarrow(str, tmp, len, d);
+	ti += ft_tonarrow(str, tmp, len + d->mw, d);
 	if (d->minus == 1 && si > 0)
 		ti = write_spaces(si, tmp, ti);
 	if (d->minus)

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 13:35:12 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:46:00 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/07 12:36:37 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ static int	ft_printf_xoxo(uintmax_t n, char *str, t_struct *d)
 	len = (str[0] == 0) ? 0 : ft_strlen(str);
 	tmp = ft_strnew((len > d->p) ? len + d->mw + d->sharp : d->p + d->sharp);
 	space = count_spaces_int(d, len, n);
+	space = (d->plus) ? space + 1 : space;
 	zero = (!d->zero || (d->p > len)) ? count_zeros(d, len, n) : space;
+//printf("space: %i | zero: %i\n", space, zero);
 	handle_flags(d, &space, &zero, n);
+//printf("space: %i | zero: %i\n", space, zero);
 	space -= (d->space) ? 1 : 0;
 	if (space && !d->minus && !d->zero && d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);
-	else if (space && !d->minus && d->zero && d->mw >= d->p && d->p > len)
+	else if (space && !d->minus && d->zero && d->mw >= d->p && 
+			(d->p > len || d->p == -1))
 		ti = write_spaces(space, tmp, 0);
 	if (d->p == -1 && n == 0 && (d->conv == 'x' || d->conv == 'X' || !d->sharp))
 		return (ft_putstrdel(&tmp, ti));

@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 13:24:59 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 14:24:16 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 11:57:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ static int	write_null_conv_c(t_struct *d, char c, int ti)
 	return (1);
 }
 
+static int	write_null_pres(t_struct *d, int ti, char *tmp, char *str)
+{
+	int	spaces;
+	int	len;
+
+	len = 6;
+	spaces = count_spaces(d, len);
+	if (!d->minus && spaces > 0)
+		ti = write_spaces(spaces, tmp, ti);
+	if (d->p)
+		while (ti - spaces < d->p && *str != '\0')
+			tmp[ti++] = *str++;
+	else
+		while (*str)
+			tmp[ti++] = *str++;
+	if (d->minus && spaces > 0)
+		ti = write_spaces(spaces, tmp, ti);
+	return (ti);
+}
+
 int			write_null(t_struct *d)
 {
 	char	*str;
@@ -40,19 +60,14 @@ int			write_null(t_struct *d)
 	char	c;
 
 	c = 0;
-	str = ft_strjoin("(null)", "");
-	tmp = ft_strnew((d->p) ? d->p : 6);
 	if (d->conv == 'c' || d->conv == 'C')
 		return (write_null_conv_c(d, c, 0));
+	str = ft_strjoin("(null)", "");
 	if (!d->zero && (d->conv == 's' || d->conv == 'S') && d->p != -1)
 	{
 		ti = 0;
-		if (d->p)
-			while (ti < d->p && *str != '\0')
-				tmp[ti++] = *str++;
-		else
-			while (*str)
-				tmp[ti++] = *str++;
+		tmp = ft_strnew((d->mw) ? d->mw : 6);
+		ti = write_null_pres(d, ti, tmp, str);
 	}
 	else
 	{
@@ -60,5 +75,6 @@ int			write_null(t_struct *d)
 		ti = (d->zero) ? write_zeros(d->mw, tmp, 0) :
 			write_spaces(d->mw, tmp, 0);
 	}
+	ft_strdel(&str);
 	return (ft_putstrdel(&tmp, ti));
 }

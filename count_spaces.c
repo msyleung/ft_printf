@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 15:51:55 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:40:42 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 12:33:09 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	count_zeros(t_struct *d, int len, int n)
 {
 	if (d->p == -1)
 		return (d->mw);
-	else if (d->p != 0 && d->p > len && n > 0)
+	else if (d->p != 0 && d->p > len && (n >= 0 || (n < 0 && d->conv == 'p')))
 		return (d->p - len);
 	else if (d->p != 0 && d->p > len && n < 0)
 		return ((d->p + 1) - len);

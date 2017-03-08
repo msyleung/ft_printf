@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:37:58 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:47:40 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 13:02:54 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				read_data(va_list ap, t_struct *d, t_format *f);
 intmax_t		extract_id(va_list ap, t_struct *d);
 uintmax_t		extract_oxu(va_list ap, t_struct *d);
 void			handle_sign(t_struct *d, char **tmp, char **str, int *ti);
-void			handle_flags(t_struct *d, int *space, int *zero, int n);
+void			handle_flags(t_struct *d, int *space, int *zero, intmax_t n);
 int				handle_wildcard(t_struct *d, t_format *f, va_list ap, int precision);
 char			*handle_sharp(t_struct *d, char **tmp, int *ti, int n);
 int				count_spaces(t_struct *d, int len);
