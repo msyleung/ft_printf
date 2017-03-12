@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:59:16 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/08 13:25:51 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/09 16:02:18 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_widelen(wchar_t c)
 	return (0);
 }
 
-int			ft_printf_cc(wchar_t c, t_struct *d)
+int			ft_printf_wc(wchar_t c, t_struct *d)
 {
 	char	*tmp;
 	int		spaces;
@@ -53,17 +53,13 @@ int			ft_printf_cc(wchar_t c, t_struct *d)
 	return (len);
 }
 
-int			ft_printf_cs(wchar_t *str, t_struct *d)
+int			ft_printf_ws(wchar_t *str, t_struct *d, int len, int ti)
 {
 	char	*tmp;
-	int		len;
 	int		zero;
-	int		ti;
 	int		si;
 
-	ti = 0;
 	si = -1;
-	len = 0;
 	if (!str || d->p == -1)
 		return (write_null(d));
 	while (str[++si] != '\0')

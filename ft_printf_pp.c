@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:56:56 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/08 12:32:54 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/09 18:00:24 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ static int	ft_printf_nullptr2(t_struct *d, int ti)
 	int		space;
 
 	tmp = ft_strnew((d->mw + 2 > d->p) ? d->mw : d->p + 2);
-	space = (d->mw && !d->p) ? count_spaces_int(d, 2, 0) - 1 :
-		count_spaces_int(d, 2, 0) - 2;
+	space = (d->mw && !d->p) ? count_sp_int(d, 2, 0) - 1 :
+		count_sp_int(d, 2, 0) - 2;
 	zero = (d->zero && d->p > 2) ? count_zeros(d, 2, 0) : space;
 	if (space && d->mw >= d->p && !d->zero && !d->minus)
 		ti = write_spaces(space, tmp, 0);
 	tmp[ti++] = '0';
 	tmp[ti++] = 'x';
-	if (d->mw && !d->p && !d->zero)
+	if (d->mw && !d->p && (!d->zero || (d->zero && d->minus)))
 		tmp[ti++] = '0';
-	if ((zero && d->p > 2) || d->zero)
+	if ((zero && d->p > 2) || (d->zero && !d->minus))
 		ti = write_zeros((d->p) ? d->p : d->mw - 2, tmp, ti);
 	ti = (space && d->minus) ? write_spaces(space, tmp, ti) : ti;
 	return (ft_putstrdel(&tmp, ti));
@@ -85,7 +85,7 @@ static int	ft_printf_ptr(t_struct *d, char *str, intmax_t n)
 	ti = 0;
 	len = ft_strlen(str);
 	tmp = ft_strnew((len + d->mw > d->p) ? len + d->mw : d->p + 2);
-	space = count_spaces_int(d, len, n) - 2;
+	space = count_sp_int(d, len, n) - 2;
 	zero = (d->p > len) ? count_zeros(d, len, n) : space;
 	if (space && d->mw >= d->p)
 		ti = write_spaces(space, tmp, 0);

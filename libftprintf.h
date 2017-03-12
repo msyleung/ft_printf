@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:37:58 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/08 13:02:54 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/09 16:34:53 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
+
+# define RED	"\x1B[31m"
+# define GREEN	"\x1B[32m"
+# define YELLOW	"\x1B[33m"
+# define BLUE	"\x1B[34m"
+# define MAGENTA	"\x1B[35m"
+# define CYAN	"\x1B[36m"
+# define WHITE	"\x1B[37m"
+# define RESET	"\x1B[0m"
 
 typedef struct	s_format
 {
@@ -41,9 +50,9 @@ typedef struct	s_struct
 
 int				ft_printf(const char *format, ...);
 int				ft_printf_c(unsigned char c, t_struct *d);
-int				ft_printf_cc(wchar_t c, t_struct *d);
+int				ft_printf_wc(wchar_t c, t_struct *d);
 int				ft_printf_s(char *str, t_struct *d);
-int				ft_printf_cs(wchar_t *c, t_struct *d);
+int				ft_printf_ws(wchar_t *c, t_struct *d, int len, int ti);
 int				ft_printf_i(intmax_t n, t_struct *d);
 int				ft_printf_cd(intmax_t n, t_struct *d);
 int				ft_printf_x(uintmax_t n, t_struct *d);
@@ -62,11 +71,11 @@ intmax_t		extract_id(va_list ap, t_struct *d);
 uintmax_t		extract_oxu(va_list ap, t_struct *d);
 void			handle_sign(t_struct *d, char **tmp, char **str, int *ti);
 void			handle_flags(t_struct *d, int *space, int *zero, intmax_t n);
-int				handle_wildcard(t_struct *d, t_format *f, va_list ap, int precision);
-char			*handle_sharp(t_struct *d, char **tmp, int *ti, int n);
+int				handle_wildcard(t_struct *d, t_format *f, va_list ap, int prec);
+char			*handle_sharp(t_struct *d, char **tmp, int *ti, intmax_t n);
 int				count_spaces(t_struct *d, int len);
-int				count_zeros(t_struct *d, int len, int n);
-int				count_spaces_int(t_struct *d, int len, int n);
+int				count_zeros(t_struct *d, int len, intmax_t n);
+int				count_sp_int(t_struct *d, int len, intmax_t n);
 int				write_spaces(int spaces, char *tmp, int ti);
 int				write_zeros(int zeros, char *tmp, int ti);
 int				write_null(t_struct *d);
@@ -79,7 +88,7 @@ void			ft_strdel(char **as);
 char			*ft_strnew(size_t size);
 size_t			ft_strlen(const char *s);
 char			*ft_stricpy(char *dst, int *i, const char *src);
-int				ft_intlen(int nb);
+int				ft_intlen(intmax_t nb);
 char			*ft_strjoin(char const *s1, char const *s2);
 int				ft_putstr(char *tmp);
 int				ft_putstrdel(char **as, int ti);

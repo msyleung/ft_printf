@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 13:24:59 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/08 11:57:28 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/12 16:15:48 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	write_null_pres(t_struct *d, int ti, char *tmp, char *str)
 	if (!d->minus && spaces > 0)
 		ti = write_spaces(spaces, tmp, ti);
 	if (d->p)
-		while (ti - spaces < d->p && *str != '\0')
+		while (((!d->minus) ? ti - spaces : ti) < d->p && *str != '\0')
 			tmp[ti++] = *str++;
 	else
 		while (*str)
@@ -63,7 +63,8 @@ int			write_null(t_struct *d)
 	if (d->conv == 'c' || d->conv == 'C')
 		return (write_null_conv_c(d, c, 0));
 	str = ft_strjoin("(null)", "");
-	if (!d->zero && (d->conv == 's' || d->conv == 'S') && d->p != -1)
+	if ((!d->zero || (d->zero && d->minus)) &&
+			(d->conv == 's' || d->conv == 'S') && d->p != -1)
 	{
 		ti = 0;
 		tmp = ft_strnew((d->mw) ? d->mw : 6);

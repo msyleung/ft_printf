@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 15:42:21 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:41:57 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 16:36:53 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	read_data2(va_list ap, t_struct *d)
 	else if (d->conv == 'c' && d->lm != 'l')
 		len += ft_printf_c(va_arg(ap, int), d);
 	else if (d->conv == 'C' || (d->conv == 'c' && d->lm == 'l'))
-		len += ft_printf_cc(va_arg(ap, wint_t), d);
+		len += ft_printf_wc(va_arg(ap, wint_t), d);
 	else if (d->conv == '%')
 		len += ft_printf_pcnt(d);
 	return (len);
@@ -40,7 +40,7 @@ int			read_data(va_list ap, t_struct *d, t_format *f)
 	if (d->conv == 's' && d->lm != 'l')
 		len += ft_printf_s(va_arg(ap, char *), d);
 	else if (d->conv == 'S' || (d->conv == 's' && d->lm == 'l'))
-		len += ft_printf_cs(va_arg(ap, wchar_t *), d);
+		len += ft_printf_ws(va_arg(ap, wchar_t *), d, 0, 0);
 	else if (d->conv == 'p')
 		len += ft_printf_p(va_arg(ap, void *), d);
 	else if (d->conv == 'i' || d->conv == 'd')

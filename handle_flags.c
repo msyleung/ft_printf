@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 11:11:25 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/07 12:50:19 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/09 16:52:47 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static int	handle_zeros(t_struct *d, int len, int z, intmax_t n)
 	if (d->zero && d->sharp && n > 0 && d->p > len)
 		z = d->p - len - 1;
 	else if (d->zero && d->sharp && n > 0 && (d->conv == 'x' || d->conv == 'X'))
-	{
 		z = d->mw - len - 2;
-//		printf("d->mw : %i | len : %i | d->p : %i\n", d->mw, len, d->p);
-	}
 	if ((d->zero && d->p == -1) || (z && d->minus && d->p < len))
 		z = 0;
 	return (z);

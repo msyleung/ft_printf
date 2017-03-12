@@ -6,7 +6,7 @@
 /*   By: sleung <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:17:00 by sleung            #+#    #+#             */
-/*   Updated: 2017/03/06 13:38:41 by sleung           ###   ########.fr       */
+/*   Updated: 2017/03/08 15:02:28 by sleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ static int	fill_data(va_list ap, t_struct *d, t_format *f)
 	return (len);
 }
 
-static int	char_out(t_format *f)
-{
-	write(1, &(f->fo[f->i]), 1);
-	f->i++;
-	return (1);
-}
-
 static void	erase_data(t_struct **tmp)
 {
 	t_struct *d;
@@ -67,19 +60,10 @@ static void	erase_data(t_struct **tmp)
 	d = NULL;
 }
 
-int			ft_printf(const char *format, ...)
+static int	ft_printf_help(t_format *f, int len, va_list ap)
 {
-	int				len;
-	t_format		*f;
-	t_struct		*d;
-	va_list			ap;
+	t_struct	*d;
 
-	len = 0;
-	if (!(f = (t_format *)malloc(sizeof(t_format))))
-		return (-1);
-	f->i = 0;
-	f->fo = (char *)format;
-	va_start(ap, format);
 	while (f->fo[f->i] != '\0')
 	{
 		if (f->fo[f->i] == '%')
@@ -93,8 +77,28 @@ int			ft_printf(const char *format, ...)
 			erase_data(&d);
 		}
 		else
-			len += char_out(f);
+		{
+			write(1, &(f->fo[f->i]), 1);
+			f->i++;
+			len += 1;
+		}
 	}
+	return (len);
+}
+
+int			ft_printf(const char *format, ...)
+{
+	int				len;
+	t_format		*f;
+	va_list			ap;
+
+	len = 0;
+	if (!(f = (t_format *)malloc(sizeof(t_format))))
+		return (-1);
+	f->i = 0;
+	f->fo = (char *)format;
+	va_start(ap, format);
+	len = ft_printf_help(f, len, ap);
 	va_end(ap);
 	if (f)
 		free(f);
