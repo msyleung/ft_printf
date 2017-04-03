@@ -7,7 +7,7 @@ Functions allowed: `write, malloc, free, exit, & the functions of man 3 stdarg`
 
 --**Project Summary**--
 ```
-• Manage conversions sSpdDioOuUxXcC%
+• Manage conversions sSpdDioOuUxXcC and %
 • Manage flags #0-+ and space
 • Manage minimum field-width
 • Manage precision
