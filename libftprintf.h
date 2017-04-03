@@ -63,7 +63,6 @@ int				ft_printf_pcnt(t_struct *d);
 int				ft_printf_u(uintmax_t n, t_struct *d);
 int				ft_printf_cu(unsigned long n, t_struct *d);
 int				ft_printf_p(void *ptr, t_struct *d);
-int				get_size(t_struct *d);
 void			check_flags(t_struct *d, t_format *f, va_list ap);
 int				check_conv(t_struct *d, t_format *f);
 int				read_data(va_list ap, t_struct *d, t_format *f);
