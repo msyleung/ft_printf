@@ -1,4 +1,4 @@
-# get_next_line
+# ft_printf
 1st Project of the 42us curriculum algorithm track
 
 Recreation of the printf function in C
